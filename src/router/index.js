@@ -13,7 +13,7 @@ import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
 
 /**
- * Note: sub-menu only appear when route children.length >= 1
+ * Note: sub-menu only appear when route children.length >= 1 .
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  *
  * hidden: true                   if set true, item will not show in the sidebar(default is false)
