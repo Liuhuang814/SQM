@@ -82,7 +82,7 @@ export const constantRoutes = [
         meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
-  },
+  }
   // {
   //   path: '/documentation',
   //   component: Layout,
@@ -149,6 +149,16 @@ export const asyncRoutes = [
           title: '供应商管理',
           roles: ['admin'] // or you can only set roles in sub nav
         }
+      },
+      {
+        path: 'supplierManagementdelt',
+        component: () => import('@/views/masterData/supplierManagementdelt'),
+        name: '添加供应商',
+        meta: {
+          title: '添加供应商',
+          roles: ['admin'] // or you can only set roles in sub nav
+        },
+        hidden: true
       },
       {
         path: 'directive',
@@ -285,8 +295,8 @@ export const asyncRoutes = [
     path: '/error-log',
     component: Layout,
     alwaysShow: true,
-    name:'文件管理',
-    meta: { title: '文件管理', noCache: true ,icon: 'bug'},
+    name: '文件管理',
+    meta: { title: '文件管理', noCache: true, icon: 'bug' },
 
     children: [
       {
