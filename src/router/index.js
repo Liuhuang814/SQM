@@ -130,9 +130,9 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/permission',
+    path: '/masterData',
     component: Layout,
-    redirect: '/permission/page',
+    redirect: '/masterData/supplierManagement',
     alwaysShow: true, // will always show the root menu
     name: '主数据',
     meta: {
@@ -142,8 +142,8 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'page',
-        component: () => import('@/views/table/complex-table'),
+        path: 'supplierManagement',
+        component: () => import('@/views/masterData/supplierManagement'),
         name: '供应商管理',
         meta: {
           title: '供应商管理',
@@ -287,7 +287,7 @@ export const asyncRoutes = [
     alwaysShow: true,
     name:'文件管理',
     meta: { title: '文件管理', noCache: true ,icon: 'bug'},
-    
+
     children: [
       {
         path: 'log',
