@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+// 供应商管理
 export function fetchList(query) {
   return request({
     url: '/vue-element-admin/article/list',
@@ -7,9 +8,34 @@ export function fetchList(query) {
     params: query
   })
 }
+// 零件管理
 export function partsManagementList(query) {
   return request({
     url: '/vue-element-admin/article/partsManagementList',
+    method: 'get',
+    params: query
+  })
+}
+// 效验标准管理
+export function standardManagementList(query) {
+  return request({
+    url: '/vue-element-admin/article/standardManagementList',
+    method: 'get',
+    params: query
+  })
+}
+// 采购单管理
+export function purchaseOrderMaentList(query) {
+  return request({
+    url: '/vue-element-admin/article/purchaseOrderMaentList',
+    method: 'get',
+    params: query
+  })
+}
+// 采购单管理
+export function inspectionManagementList(query) {
+  return request({
+    url: '/vue-element-admin/article/inspectionManagementList',
     method: 'get',
     params: query
   })

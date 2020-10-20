@@ -1,13 +1,15 @@
 const Mock = require('mockjs');
 const jsonObj = require('../src/views/masterData/json')
+const jsonObj1 = require('../src/views/icMaterialManagement/json')
 // import defaultSettings from '@/settings';
-console.log(jsonObj)
+// 主数据
 const List = jsonObj.supMent.rows
 const partsManagementList = jsonObj.partsManagement.rows
-const count = 100
+const standardManagementList = jsonObj.standardManagement.rows
+// 来料管理
+const purchaseOrderMaentList = jsonObj1.purchaseOrderMaent.rows
+const inspectionManagementList = jsonObj1.inspectionManagement.rows
 
-const baseContent = '<p>I am testing data, I am testing data.</p><p><img src="https://wpimg.wallstcn.com/4c69009c-0fd4-4153-b112-6cb53d1cf943"></p>'
-const image_uri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70b3'
 
 // for (let i = 0; i < count; i++) {
 //   List.push(Mock.mock({
@@ -91,8 +93,100 @@ module.exports = [
       }
     }
   },
+  //效验标准管理
+  {
+    url: '/vue-element-admin/article/standardManagementList',
+    type: 'get',
+    response: config => {
+      const { standardNo, supplierNo, supplierName, partName, specification, state, page = 1, limit = 20, sort } = config.query
+      let mockList = standardManagementList.filter(item => {
+        if (standardNo && item.standardNo.indexOf(standardNo) < 0) return false
+        if (supplierNo && item.supplierNo.indexOf(supplierNo) < 0) return false
+        if (supplierName && item.supplierName.indexOf(supplierName) < 0) return false
+        if (partName && item.partName.indexOf(partName) < 0) return false
+        if (specification && item.specification.indexOf(specification) < 0) return false
+        if (state && item.state != state) return false
+        return true
+      })
 
+      if (sort === '-id') {
+        mockList = mockList.reverse()
+      }
 
+      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+      return {
+        code: 20000,
+        data: {
+          total: mockList.length,
+          items: pageList
+        }
+      }
+    }
+  },
+  //采购单管理
+  {
+    url: '/vue-element-admin/article/purchaseOrderMaentList',
+    type: 'get',
+    response: config => {
+      const { standardNo, supplierNo, supplierName, partName, specification, state, page = 1, limit = 20, sort } = config.query
+      let mockList = purchaseOrderMaentList.filter(item => {
+        if (standardNo && item.standardNo.indexOf(standardNo) < 0) return false
+        if (supplierNo && item.supplierNo.indexOf(supplierNo) < 0) return false
+        if (supplierName && item.supplierName.indexOf(supplierName) < 0) return false
+        if (partName && item.partName.indexOf(partName) < 0) return false
+        if (specification && item.specification.indexOf(specification) < 0) return false
+        if (state && item.state != state) return false
+        return true
+      })
+
+      if (sort === '-id') {
+        mockList = mockList.reverse()
+      }
+
+      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+      return {
+        code: 20000,
+        data: {
+          total: mockList.length,
+          items: pageList
+        }
+      }
+    }
+  },
+  //采购单管理
+  {
+    url: '/vue-element-admin/article/inspectionManagementList',
+    type: 'get',
+    response: config => {
+      const { standardNo, supplierNo, supplierName, partName, specification, state, page = 1, limit = 20, sort } = config.query
+      let mockList = inspectionManagementList.filter(item => {
+        if (standardNo && item.standardNo.indexOf(standardNo) < 0) return false
+        if (supplierNo && item.supplierNo.indexOf(supplierNo) < 0) return false
+        if (supplierName && item.supplierName.indexOf(supplierName) < 0) return false
+        if (partName && item.partName.indexOf(partName) < 0) return false
+        if (specification && item.specification.indexOf(specification) < 0) return false
+        if (state && item.state != state) return false
+        return true
+      })
+
+      if (sort === '-id') {
+        mockList = mockList.reverse()
+      }
+
+      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+      return {
+        code: 20000,
+        data: {
+          total: mockList.length,
+          items: pageList
+        }
+      }
+    }
+  },
+  
   {
     url: '/vue-element-admin/article/detail',
     type: 'get',

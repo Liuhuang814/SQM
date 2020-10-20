@@ -166,12 +166,18 @@ export const asyncRoutes = [
         name: '零件管理',
         meta: {
           title: '零件管理'
-          // if do not set roles, means: this page does not require permission
         }
       },
       {
-        path: 'role',
-        component: () => import('@/views/table/complex-table'),
+        path: 'partsManagementDetl',
+        component: () => import('@/views/masterData/partsManagementDetl'),
+        name: '添加零件',
+        hidden: true,
+        meta: {title: '添加零件'}
+      },
+      {
+        path: 'performanceEvaluationRules',
+        component: () => import('@/views/masterData/performanceEvaluationRules'),
         name: '供应商绩效评价规则',
         meta: {
           title: '供应商绩效评价规则',
@@ -179,14 +185,25 @@ export const asyncRoutes = [
         }
       },
       {
-        path: 'role1',
-        component: () => import('@/views/table/complex-table'),
+        path: 'standardManagement',
+        component: () => import('@/views/masterData/standardManagement'),
         name: '效验标准管理',
         meta: {
           title: '效验标准管理',
           roles: ['admin']
         }
+      },
+      {
+        path: 'standardManagementDelt',
+        component: () => import('@/views/masterData/standardManagementDelt'),
+        name: '添加效验标准',
+        hidden: true,
+        meta: {
+          title: '添加效验标准',
+          roles: ['admin']
+        }
       }
+      
     ]
   },
 
@@ -210,9 +227,9 @@ export const asyncRoutes = [
   // tableRouter,
 
   {
-    path: '/example',
+    path: '/icMaterialManagement',
     component: Layout,
-    redirect: '/example/list',
+    redirect: '/icMaterialManagement/purchaseOrderMaent',
     name: '来料管理',
     meta: {
       title: '来料管理',
@@ -220,26 +237,34 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'create',
-        component: () => import('@/views/table/complex-table'),
+        path: 'purchaseOrderMaent',
+        component: () => import('@/views/icMaterialManagement/purchaseOrderMaent'),
         name: '采购单管理',
         meta: { title: '采购单管理', icon: 'edit' }
       },
       {
-        path: 'edit/:id(\\d+)',
-        component: () => import('@/views/table/complex-table'),
-        name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+        path: 'purchaseOrderMaentDetl',
+        component: () => import('@/views/icMaterialManagement/purchaseOrderMaentDetl'),
+        name: '添加采购单',
+        meta: { title: '添加采购单', noCache: true, activeMenu: '/icMaterialManagement/purchaseOrderMaent' },
         hidden: true
       },
       {
-        path: 'list',
-        component: () => import('@/views/table/complex-table'),
+        path: 'inspectionManagement',
+        component: () => import('@/views/icMaterialManagement/inspectionManagement'),
         name: '来料检验管理',
         meta: { title: '来料检验管理', icon: 'list' }
       },
       {
-        path: 'list',
+        path: 'inspectionManagementDetl',
+        component: () => import('@/views/icMaterialManagement/inspectionManagementDetl'),
+        name: '添加来料检验单',
+        meta: { title: '添加来料检验单', noCache: true, activeMenu: '/icMaterialManagement/inspectionManagement' },
+        hidden: true
+      },
+      
+      {
+        path: 'list1',
         component: () => import('@/views/table/complex-table'),
         name: '不合格评审单管理',
         meta: { title: '不合格评审单管理', icon: 'list' }
