@@ -84,7 +84,7 @@ export default {
       total: 0,
       listQuery: {
         page: 1,
-        tableH: tableH, // 表格高度1
+        tableH: tableH, // 表格高度
         limit: pageSizes[0],
         pageSizes:pageSizes,
         supplierNo: undefined,
