@@ -1,8 +1,9 @@
 <template>
   <div class="app-container">
-    <el-button style="float:right" type="primary" plain>
+    <el-button style="float:right;margin-bottom:9px" type="primary" plain>
       保存
     </el-button>
+    <div style="clear:both"></div>
     <el-collapse v-model="activeNames" @change="handleChange">
       <el-collapse-item name="1">
         <template slot="title">

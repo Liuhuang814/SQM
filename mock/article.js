@@ -2,7 +2,8 @@ const Mock = require('mockjs');
 const jsonObj = require('../src/views/masterData/json')
 // import defaultSettings from '@/settings';
 console.log(jsonObj)
-const List = jsonObj.rows
+const List = jsonObj.supMent.rows
+const partsManagementList = jsonObj.partsManagement.rows
 const count = 100
 
 const baseContent = '<p>I am testing data, I am testing data.</p><p><img src="https://wpimg.wallstcn.com/4c69009c-0fd4-4153-b112-6cb53d1cf943"></p>'
@@ -30,6 +31,7 @@ const image_uri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70
 // }
 
 module.exports = [
+  // 供应商管理
   {
     url: '/vue-element-admin/article/list',
     type: 'get',
@@ -59,6 +61,37 @@ module.exports = [
       }
     }
   },
+  //零件管理列表
+  {
+    url: '/vue-element-admin/article/partsManagementList',
+    type: 'get',
+    response: config => {
+      const { partNo, partName, specification, partType, state, page = 1, limit = 20, sort } = config.query
+      let mockList = partsManagementList.filter(item => {
+        if (partNo && item.partNo.indexOf(partNo) < 0) return false
+        if (partName && item.partName.indexOf(partName) < 0) return false
+        if (specification && item.specification.indexOf(specification) < 0) return false
+        if (partType && item.partType != partType) return false
+        if (state && item.state != state) return false
+        return true
+      })
+
+      if (sort === '-id') {
+        mockList = mockList.reverse()
+      }
+
+      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+      return {
+        code: 20000,
+        data: {
+          total: mockList.length,
+          items: pageList
+        }
+      }
+    }
+  },
+
 
   {
     url: '/vue-element-admin/article/detail',

@@ -161,8 +161,8 @@ export const asyncRoutes = [
         hidden: true
       },
       {
-        path: 'directive',
-        component: () => import('@/views/table/complex-table'),
+        path: 'partsManagement',
+        component: () => import('@/views/masterData/partsManagement'),
         name: '零件管理',
         meta: {
           title: '零件管理'

@@ -30,7 +30,7 @@ export function getUpdatedData(oldData, newData, callback) {
 */
 export function getTableBestRows(tableHeight, hasInnerRowComp = '') {
   // tableHeight不包含表格底部的分页和页数高度,表头高度：tableRowHeight,表格不换行的行高：tableRowHeight
-  let tableRowHeight = 36
+  let tableRowHeight = 45
   // switch (defaultSettings.elementSize) {
   //   case 'mini':
   //     tableRowHeight = 36

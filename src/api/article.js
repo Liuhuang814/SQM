@@ -7,7 +7,13 @@ export function fetchList(query) {
     params: query
   })
 }
-
+export function partsManagementList(query) {
+  return request({
+    url: '/vue-element-admin/article/partsManagementList',
+    method: 'get',
+    params: query
+  })
+}
 export function fetchArticle(id) {
   return request({
     url: '/vue-element-admin/article/detail',
