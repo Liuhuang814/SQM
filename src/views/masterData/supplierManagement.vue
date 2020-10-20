@@ -30,6 +30,7 @@
     <el-table
       :data="tableData"
       stripe
+      :height="tableH"
       highlight-current-row
       style="width: 100%"
     >
@@ -59,25 +60,33 @@
       <el-table-column label="创建时间" prop="createDate" align="center" />
       <el-table-column label="操作" align="center">
         <template slot-scope="{row,$index}">
-          <el-button type="primary" plain icon="el-icon-edit" />
-          <el-button type="danger" plain icon="el-icon-delete" />
+          <!-- <el-button type="primary" @click="details(row)" plain icon="el-icon-edit" />
+          <el-button type="danger" @click="handleDelete(row,$index)" plain icon="el-icon-delete" /> -->
+          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>
+          <el-button type="text" @click="handleDelete(row,$index)" style="color:red"><span><i class="el-icon-delete" style="font-size:16px"></i></span></el-button>
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :pageSizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 <script>
+import { getTableBestRows } from '@/utils/businessUtil'
 import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import { rows } from './json'
 export default {
   components: { Pagination },
   data() {
+    const tableH = document.body.clientHeight - 290
+    const pageSizes = getTableBestRows(tableH)
     return {
       total: 0,
       listQuery: {
         page: 1,
-        limit: 10,
+        tableH: tableH, // 表格高度
+        limit: pageSizes[0],
+        pageSizes:pageSizes,
         supplierNo: undefined,
         supplierName: undefined,
         supplierType: undefined,
@@ -116,6 +125,20 @@ export default {
       this.getList()
     },
     addSl() {
+      sessionStorage.setItem('supplierManagementdelt','{}')
+      this.$router.push({ path: 'supplierManagementdelt' })
+    },
+    handleDelete(row, index) {
+      this.$notify({
+        title: '成功',
+        message: '删除成功',
+        type: 'success',
+        duration: 2000
+      })
+      this.tableData.splice(index, 1)
+    },
+    details(row){
+      sessionStorage.setItem('supplierManagementdelt',JSON.stringify(row))
       this.$router.push({ path: 'supplierManagementdelt' })
     }
   }

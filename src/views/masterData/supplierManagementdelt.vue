@@ -1,5 +1,8 @@
 <template>
   <div class="app-container">
+    <el-button style="float:right" type="primary" plain>
+      保存
+    </el-button>
     <el-collapse v-model="activeNames" @change="handleChange">
       <el-collapse-item name="1">
         <template slot="title">
@@ -101,7 +104,7 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="序号" type="index" width="50" align="center" />
+          <el-table-column label="序号" type="index" width="45" align="center" />
           <el-table-column label="资质类别" align="center" width="95">
             <template slot-scope="{row,$index}">
               <el-select v-model="row.zzlb" clearable style="width:100%" placeholder="请选择资质类别">
@@ -145,7 +148,7 @@
               <el-input v-model="row.jz" clearable />
             </template>
           </el-table-column>
-          <el-table-column label="完成人" align="center">
+          <el-table-column label="完成人" width="65" align="center">
             <template slot-scope="{row,$index}">
               <el-input v-model="row.wcr" clearable />
             </template>
@@ -155,7 +158,7 @@
               <el-input v-model="row.zwwcsj" clearable />
             </template>
           </el-table-column>
-          <el-table-column label="提醒人" align="center">
+          <el-table-column label="提醒人" width="65" align="center">
             <template slot-scope="{row,$index}">
               <el-input v-model="row.txr" clearable />
             </template>
@@ -181,7 +184,7 @@
               </el-select>
             </template>
           </el-table-column>
-          <el-table-column label="操作" align="center">
+          <el-table-column label="操作"  width="60" align="center">
             <template slot-scope="{row,$index}">
               <el-button type="text"> <span style="color:red" @click="del1(row)">删除</span> </el-button>
             </template>
@@ -244,7 +247,14 @@ export default {
         supplierLevel: { required: true, message: '请选择供应商级别', trigger: 'change' },
         state: { required: true, message: '请选择供应商状态', trigger: 'change' }
       },
-      i: 1
+      i: 1,
+      rowObj:{}
+    }
+  },
+  mounted(){
+    this.rowObj = JSON.parse(sessionStorage.getItem('supplierManagementdelt'))
+    if(JSON.stringify(this.rowObj) != '{}'){
+      this.ruleForm = Object.assign({},this.rowObj);
     }
   },
   methods: {
