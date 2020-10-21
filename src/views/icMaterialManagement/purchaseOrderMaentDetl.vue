@@ -3,8 +3,8 @@
     <el-button style="float:right;margin-bottom:9px" type="primary" plain>
       保存
     </el-button>
-    <div style="clear:both" />
-    <el-collapse v-model="activeNames" @change="handleChange">
+    <div style="clear:both"></div>
+    <el-collapse v-model="activeNames">
       <el-collapse-item name="1">
         <template slot="title">
           <span style="font-size:16px;color:#409eff">基本信息</span>

@@ -18,7 +18,8 @@ import './permission' // permission control
 import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
-
+import operation from '@/components/operationArea/operation'// 自适应的‘更多条件’区域
+Vue.component('operation', operation)
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

@@ -32,7 +32,7 @@ export function purchaseOrderMaentList(query) {
     params: query
   })
 }
-// 采购单管理
+// 来料管理管理
 export function inspectionManagementList(query) {
   return request({
     url: '/vue-element-admin/article/inspectionManagementList',
@@ -40,6 +40,31 @@ export function inspectionManagementList(query) {
     params: query
   })
 }
+// 不合格评审单管理
+export function noReviewManagementList(query) {
+  return request({
+    url: '/vue-element-admin/article/noReviewManagementList',
+    method: 'get',
+    params: query
+  })
+}
+// 投诉单管理
+export function complaintFormManagementList(query) {
+  return request({
+    url: '/vue-element-admin/article/complaintFormManagementList',
+    method: 'get',
+    params: query
+  })
+}
+// 资质管理
+export function qualificationManagementList(query) {
+  return request({
+    url: '/vue-element-admin/article/qualificationManagementList',
+    method: 'get',
+    params: query
+  })
+}
+
 export function fetchArticle(id) {
   return request({
     url: '/vue-element-admin/article/detail',

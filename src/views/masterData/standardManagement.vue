@@ -32,7 +32,7 @@
       highlight-current-row
       style="width: 100%"
     >
-      <el-table-column label="标准编号" prop="standardNo" align="left" />
+      <el-table-column label="标准编号" prop="standardNo" align="left"  width="120" />
       <el-table-column label="供应商编号" prop="supplierNo" align="left" />
       <el-table-column label="供应商名称" prop="supplierName" align="left" width="240" />
       <el-table-column label="零件编号" prop="partNo" align="left" width="140" />

@@ -264,16 +264,24 @@ export const asyncRoutes = [
       },
 
       {
-        path: 'list1',
-        component: () => import('@/views/table/complex-table'),
+        path: 'noReviewManagement',
+        component: () => import('@/views/icMaterialManagement/noReviewManagement'),
         name: '不合格评审单管理',
         meta: { title: '不合格评审单管理', icon: 'list' }
-      }
+      },
+      {
+        path: 'noReviewManagementDetl',
+        component: () => import('@/views/icMaterialManagement/noReviewManagementDetl'),
+        name: '不合格评审单详情',
+        meta: { title: '不合格评审单详情', icon: 'list' , activeMenu: '/icMaterialManagement/noReviewManagement'},
+        hidden: true
+      },
     ]
   },
 
   {
-    path: '/tab',
+    path: '/complaintManagement',
+    redirect: '/icMaterialManagement/complaintFormManagement',
     component: Layout,
     name: '投诉管理',
     meta: {
@@ -283,18 +291,25 @@ export const asyncRoutes = [
     alwaysShow: true,
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/table/complex-table'),
+        path: 'complaintFormManagement',
+        component: () => import('@/views/complaintManagement/complaintFormManagement'),
         name: '投诉单管理',
         meta: { title: '投诉单管理', icon: 'tab' }
+      },
+      {
+        path: 'complaintFormManagementDetl',
+        component: () => import('@/views/complaintManagement/complaintFormManagementDetl'),
+        name: '添加投诉单',
+        meta: { title: '添加投诉单', icon: 'list' , activeMenu: '/complaintManagement/complaintFormManagement'},
+        hidden: true
       }
     ]
   },
 
   {
-    path: '/error',
+    path: '/systemManagement',
     component: Layout,
-    redirect: 'noRedirect',
+    redirect: '/systemManagement/qualificationManagement',
     name: '体系管理',
     meta: {
       title: '体系管理',
@@ -302,11 +317,19 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: '401',
-        component: () => import('@/views/table/complex-table'),
+        path: 'qualificationManagement',
+        component: () => import('@/views/systemManagement/qualificationManagement'),
         name: '资质管理',
         meta: { title: '资质管理', noCache: true }
       },
+      {
+        path: 'qualificationManagementDelt',
+        component: () => import('@/views/systemManagement/qualificationManagementDelt'),
+        name: '供应商详情',
+        meta: { title: '供应商详情', icon: 'list' , activeMenu: '/systemManagement/qualificationManagement'},
+        hidden: true
+      },
+      
       {
         path: '404',
         component: () => import('@/views/table/complex-table'),
