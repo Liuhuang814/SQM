@@ -1,38 +1,44 @@
 <template>
 <!-- 采购单管理 -->
   <div class="app-container">
-    <div class="filter-container">
-      <el-input v-model="listQuery.purchaseNo" placeholder="采购单单号" clearable class="input-item" />
-      <el-select v-model="listQuery.purchaseType" placeholder="采购单种类" clearable class="input-item">
-        <el-option v-for="item in slClassificationOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
-      </el-select>
-      <el-input v-model="listQuery.supplierNo" placeholder="供应商编号" clearable class="input-item" />
-      <el-input v-model="listQuery.supplierName" placeholder="供应商名称" clearable class="input-item" />
-      <el-select v-model="listQuery.state" placeholder="采购单状态" clearable class="input-item">
-        <el-option v-for="item in slStateOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
-      </el-select>
-      <el-date-picker
-        style="width: 260px;"
-        v-model="listQuery.value1"
-        type="daterange"
-        range-separator="至"
-        start-placeholder="订单开始日期"
-        end-placeholder="订单结束日期">
-        </el-date-picker>
-      <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain @click="addSl">
-          新增
-        </el-button>
-        <el-button type="primary" plain>
-          导入
-        </el-button>
-        <el-button type="primary" plain>
-          导出
-        </el-button>
+    <div id="area-condition-bar">
+      <div id="area-condition">
+        <div class="condition">
+          <el-input v-model="listQuery.purchaseNo" placeholder="采购单单号" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-select v-model="listQuery.purchaseType" placeholder="采购单种类" clearable class="input-item">
+            <el-option v-for="item in slClassificationOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
+          </el-select>
+        </div>
+        <div class="condition">
+          <el-input v-model="listQuery.supplierNo" placeholder="供应商编号" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-input v-model="listQuery.supplierName" placeholder="供应商名称" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-select v-model="listQuery.state" placeholder="采购单状态" clearable class="input-item">
+            <el-option v-for="item in slStateOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
+          </el-select>
+        </div>
+        <div class="condition">
+          <el-date-picker
+            style="width: 260px;"
+            v-model="listQuery.value1"
+            type="daterange"
+            range-separator="至"
+            start-placeholder="订单开始日期"
+            end-placeholder="订单结束日期">
+          </el-date-picker>
+        </div>
       </div>
+      <operation id="area-operation">
+        <el-button type="primary" plain @click="handleFilter">查询</el-button>
+        <el-button type="primary" plain @click="addSl">新增</el-button>
+        <el-button type="primary" plain>导入</el-button>
+        <el-button type="primary" plain>导出</el-button>
+      </operation>
     </div>
     <el-table
       :data="tableData"
@@ -41,7 +47,7 @@
       highlight-current-row
       style="width: 100%"
     >
-      <el-table-column label="采购单单号" prop="purchaseNo" align="left" width="140" />
+      <el-table-column label="采购单单号" prop="purchaseNo" align="left" width="120" />
       <el-table-column label="采购单种类" prop="purchaseType" align="left">
       <template slot-scope="scope">
           <div>
@@ -58,10 +64,10 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="订单日期" prop="purchaseDate" align="center" width="140"/>
+      <el-table-column label="订单日期" prop="purchaseDate" align="center" width="120"/>
       <el-table-column label="业务员编号" show-overflow-tooltip prop="userNo" align="left"  width="130" />
       <el-table-column label="业务员名称" show-overflow-tooltip prop="userName" align="left" />
-      <el-table-column label="创建时间" show-overflow-tooltip prop="createDate"  align="center" width="240" />
+      <el-table-column label="创建时间" show-overflow-tooltip prop="createDate"  align="center" width="160" />
       <el-table-column label="操作" align="center">
         <template slot-scope="{row,$index}">
           <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>

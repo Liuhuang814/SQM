@@ -189,3 +189,57 @@ aside {
 .multiselect--active {
   z-index: 1000 !important;
 }
+
+#area-condition-bar {
+  overflow: hidden;
+  height: 44px;
+}
+// 页面条件域和操作域样式
+#area-condition {
+  display: inline-block;
+  min-height: 44px;
+
+  .condition {
+    // padding-right: 20px;
+    display: inline-block;
+
+    &>span:first-child {
+      margin-right: 5px;
+    }
+  }
+}
+.condition {
+  margin-bottom: 10px;
+}
+#area-operation {
+  float:right;
+}
+#moreCondition .condition > span {
+  display: block;
+}
+.bfBread {
+  float: left;
+  line-height: 34px;
+  height: 37px;
+
+  &>div {
+    vertical-align: top;
+  }
+}
+
+// 页面条件域和操作域样式(当条件少时用这个)
+.btnGroupArea {
+  width: 100%;
+  height: 44px;
+  overflow: hidden;
+}
+.leftCondition{
+  margin-right: 220px;
+
+  &>span {
+    margin-right: 5px;
+  }
+}
+.rightBtnGroup {
+  float: right;
+}

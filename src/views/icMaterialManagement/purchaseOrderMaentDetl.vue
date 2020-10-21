@@ -4,7 +4,7 @@
       保存
     </el-button>
     <div style="clear:both"></div>
-    <el-collapse v-model="activeNames" @change="handleChange">
+    <el-collapse v-model="activeNames">
       <el-collapse-item name="1">
         <template slot="title">
           <span style="font-size:16px;color:#409eff">基本信息</span>

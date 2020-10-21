@@ -1,7 +1,43 @@
 <template>
 <!-- 采购单管理 -->
   <div class="app-container">
-    <div class="filter-container">
+    <div id="area-condition-bar">
+      <div id="area-condition">
+        <div class="condition">
+          <el-input v-model="listQuery.inspectionNo" placeholder="检验单编号" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-input v-model="listQuery.purchaseNo" placeholder="采购单号" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-input v-model="listQuery.batchNo" placeholder="批号" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-select v-model="listQuery.determine" placeholder="综合判定" clearable class="input-item">
+            <el-option v-for="item in slClassificationOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
+          </el-select>
+        </div>
+        <div class="condition">
+          <el-select v-model="listQuery.environmental" placeholder="是否环保" clearable class="input-item">
+            <el-option v-for="item in slClassificationOp1" :key="item.value+item.label" :label="item.label" :value="item.value" />
+          </el-select>
+        </div>
+        <div class="condition">
+          <el-select v-model="listQuery.state" placeholder="状态" clearable class="input-item">
+            <el-option v-for="item in slStateOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
+          </el-select>
+        </div>
+      </div>
+      <operation id="area-operation">
+        <el-button type="primary" plain @click="handleFilter">查询</el-button>
+        <el-button type="primary" plain @click="addSl">新增</el-button>
+        <el-button type="primary" plain>导出</el-button>
+        <el-button type="primary" plain>导出检验报告</el-button>
+        <el-button type="primary" plain>导出入库单</el-button>
+        <el-button type="primary" plain>发起不合格评审</el-button>
+      </operation>
+    </div>
+    <!-- <div class="filter-container"  style="float:left">
       <el-input v-model="listQuery.inspectionNo" placeholder="检验单编号" clearable class="input-item" />
       <el-input v-model="listQuery.purchaseNo" placeholder="采购单号" clearable class="input-item" />
       <el-input v-model="listQuery.batchNo" placeholder="批号" clearable class="input-item" />
@@ -14,7 +50,8 @@
       <el-select v-model="listQuery.state" placeholder="状态" clearable class="input-item">
         <el-option v-for="item in slStateOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
       </el-select>
-      <div style="float:right">
+    </div> -->
+      <!-- <div style="float:right">
         <el-button type="primary" plain @click="handleFilter">
           查询
         </el-button>
@@ -22,13 +59,18 @@
           新增
         </el-button>
         <el-button type="primary" plain>
-          导入
-        </el-button>
-        <el-button type="primary" plain>
           导出
         </el-button>
-      </div>
-    </div>
+        <el-button type="primary" plain>
+          导出检验报告
+        </el-button>
+        <el-button type="primary" plain>
+          导出入库单
+        </el-button>
+        <el-button type="primary" plain>
+          发起不合格评审
+        </el-button>
+      </div> -->
     <el-table
       :data="tableData"
       stripe
@@ -36,11 +78,11 @@
       highlight-current-row
       style="width: 100%"
     >
-      <el-table-column label="检验单编号" show-overflow-tooltip prop="inspectionNo" align="left" />
-      <el-table-column label="检验报告编号" prop="surveyReportNo" show-overflow-tooltip align="left" width="100" />
-      <el-table-column label="入库单号" prop="incomingNo" show-overflow-tooltip align="left" width="70" />
-      <el-table-column label="采购单号" prop="purchaseNo" show-overflow-tooltip align="left" width="80" />
-      <el-table-column label="批号" prop="batchNo" align="left" show-overflow-tooltip width="70" />
+      <el-table-column label="检验单编号" show-overflow-tooltip prop="inspectionNo" align="left" width="130"/>
+      <el-table-column label="检验报告编号" prop="surveyReportNo" show-overflow-tooltip align="left" width="130" />
+      <el-table-column label="入库单号" prop="incomingNo" show-overflow-tooltip align="left" width="130" />
+      <el-table-column label="采购单号" prop="purchaseNo" show-overflow-tooltip align="left" width="110" />
+      <el-table-column label="批号" prop="batchNo" align="left" show-overflow-tooltip width="120" />
       <el-table-column label="来料数量" prop="incomingNum" align="left" width="68" />
       <el-table-column label="检验数量" prop="inspectNum" align="left" width="68" />
       <el-table-column label="综合判定" prop="determine" align="left">
@@ -64,7 +106,13 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="不良率" prop="rejectRatio" align="center"  width="60"/>
+      <el-table-column label="不良率" prop="rejectRatio" align="right"  width="60">
+      <template slot-scope="scope">
+          <div>
+            {{ scope.row.rejectRatio}}%
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column label="仓管员" prop="storeUserName" align="left" width="60" />
       <el-table-column label="物控核准" prop="materialApproval" align="center" width="70"/>
       <el-table-column label="检验员" show-overflow-tooltip prop="inspectUserName" align="left"  width="60" />
@@ -76,7 +124,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center">
+      <el-table-column label="操作" fixed="right" align="center">
         <template slot-scope="{row,$index}">
           <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>
           <el-button type="text" @click="handleDelete(row,$index)" style="color:red"><span><i class="el-icon-delete" style="font-size:16px"></i></span></el-button>
