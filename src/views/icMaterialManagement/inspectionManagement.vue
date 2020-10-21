@@ -1,5 +1,5 @@
 <template>
-<!-- 采购单管理 -->
+  <!-- 采购单管理 -->
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.inspectionNo" placeholder="检验单编号" clearable class="input-item" />
@@ -44,31 +44,31 @@
       <el-table-column label="来料数量" prop="incomingNum" align="left" width="68" />
       <el-table-column label="检验数量" prop="inspectNum" align="left" width="68" />
       <el-table-column label="综合判定" prop="determine" align="left">
-      <template slot-scope="scope">
+        <template slot-scope="scope">
           <div>
             {{ slClassificationOp[scope.row.determine].label }}
           </div>
         </template>
       </el-table-column>
       <el-table-column label="是否环保" prop="environmental" align="left">
-      <template slot-scope="scope">
+        <template slot-scope="scope">
           <div>
             {{ slClassificationOp1[scope.row.environmental].label }}
           </div>
         </template>
       </el-table-column>
       <el-table-column label="环保标识是否齐全" prop="environmentalProtectionLabel" width="118" align="left">
-      <template slot-scope="scope">
+        <template slot-scope="scope">
           <div>
             {{ scope.row.environmentalProtectionLabel=='0'?'齐全':'不齐全' }}
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="不良率" prop="rejectRatio" align="center"  width="60"/>
+      <el-table-column label="不良率" prop="rejectRatio" align="center" width="60" />
       <el-table-column label="仓管员" prop="storeUserName" align="left" width="60" />
-      <el-table-column label="物控核准" prop="materialApproval" align="center" width="70"/>
-      <el-table-column label="检验员" show-overflow-tooltip prop="inspectUserName" align="left"  width="60" />
-      <el-table-column label="品质核准" show-overflow-tooltip prop="qualityApproval" align="left"  width="70" />
+      <el-table-column label="物控核准" prop="materialApproval" align="center" width="70" />
+      <el-table-column label="检验员" show-overflow-tooltip prop="inspectUserName" align="left" width="60" />
+      <el-table-column label="品质核准" show-overflow-tooltip prop="qualityApproval" align="left" width="70" />
       <el-table-column label="状态" prop="state" align="center">
         <template slot-scope="scope">
           <div>
@@ -78,12 +78,12 @@
       </el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="{row,$index}">
-          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>
-          <el-button type="text" @click="handleDelete(row,$index)" style="color:red"><span><i class="el-icon-delete" style="font-size:16px"></i></span></el-button>
+          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
+          <el-button type="text" style="color:red" @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :pageSizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page-sizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 <script>
@@ -101,15 +101,15 @@ export default {
       listQuery: {
         page: 1,
         limit: pageSizes[0],
-        pageSizes:pageSizes,
+        pageSizes: pageSizes
       },
       slClassificationOp: [
         { label: '合格', value: '0' },
-        { label: '不合格', value: '1' },
+        { label: '不合格', value: '1' }
       ],
       slClassificationOp1: [
         { label: 'HSF环保', value: '0' },
-        { label: 'HS非环保', value: '1' },
+        { label: 'HS非环保', value: '1' }
       ],
       slStateOp: [
         { label: '进行中', value: '0' },
@@ -134,7 +134,7 @@ export default {
       this.getList()
     },
     addSl() {
-      sessionStorage.setItem('inspectionManagementDetl','{}')
+      sessionStorage.setItem('inspectionManagementDetl', '{}')
       this.$router.push({ path: 'inspectionManagementDetl' })
     },
     handleDelete(row, index) {
@@ -146,8 +146,8 @@ export default {
       })
       this.tableData.splice(index, 1)
     },
-    details(row){
-      sessionStorage.setItem('inspectionManagementDetl',JSON.stringify(row))
+    details(row) {
+      sessionStorage.setItem('inspectionManagementDetl', JSON.stringify(row))
       this.$router.push({ path: 'inspectionManagementDetl' })
     }
   }

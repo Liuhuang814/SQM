@@ -1,5 +1,5 @@
 <template>
-<!-- 效验标准管理 -->
+  <!-- 效验标准管理 -->
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.standardNo" placeholder="标准编号" clearable class="input-item" />
@@ -35,7 +35,7 @@
       <el-table-column label="标准编号" prop="standardNo" align="left" />
       <el-table-column label="供应商编号" prop="supplierNo" align="left" />
       <el-table-column label="供应商名称" prop="supplierName" align="left" width="240" />
-      <el-table-column label="零件编号" prop="partNo" align="left" width="140"/>
+      <el-table-column label="零件编号" prop="partNo" align="left" width="140" />
       <el-table-column label="品名" show-overflow-tooltip prop="partName" align="left" />
       <el-table-column label="材料" show-overflow-tooltip prop="materials" align="left" width="230" />
       <el-table-column label="产品规格" show-overflow-tooltip prop="specification" align="left" />
@@ -48,12 +48,12 @@
       </el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="{row,$index}">
-          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>
-          <el-button type="text" @click="handleDelete(row,$index)" style="color:red"><span><i class="el-icon-delete" style="font-size:16px"></i></span></el-button>
+          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
+          <el-button type="text" style="color:red" @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :pageSizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page-sizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 <script>
@@ -71,7 +71,7 @@ export default {
       listQuery: {
         page: 1,
         limit: pageSizes[0],
-        pageSizes:pageSizes,
+        pageSizes: pageSizes
       },
       slClassificationOp: [
         { label: '原材料', value: '0' },
@@ -101,7 +101,7 @@ export default {
       this.getList()
     },
     addSl() {
-      sessionStorage.setItem('standardManagementDelt','{}')
+      sessionStorage.setItem('standardManagementDelt', '{}')
       this.$router.push({ path: 'standardManagementDelt' })
     },
     handleDelete(row, index) {
@@ -113,8 +113,8 @@ export default {
       })
       this.tableData.splice(index, 1)
     },
-    details(row){
-      sessionStorage.setItem('standardManagementDelt',JSON.stringify(row))
+    details(row) {
+      sessionStorage.setItem('standardManagementDelt', JSON.stringify(row))
       this.$router.push({ path: 'standardManagementDelt' })
     }
   }

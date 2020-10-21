@@ -1,5 +1,5 @@
 <template>
-<!-- 采购单管理 -->
+  <!-- 采购单管理 -->
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.purchaseNo" placeholder="采购单单号" clearable class="input-item" />
@@ -12,13 +12,13 @@
         <el-option v-for="item in slStateOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
       </el-select>
       <el-date-picker
-        style="width: 260px;"
         v-model="listQuery.value1"
+        style="width: 260px;"
         type="daterange"
         range-separator="至"
         start-placeholder="订单开始日期"
-        end-placeholder="订单结束日期">
-        </el-date-picker>
+        end-placeholder="订单结束日期"
+      />
       <div style="float:right">
         <el-button type="primary" plain @click="handleFilter">
           查询
@@ -43,7 +43,7 @@
     >
       <el-table-column label="采购单单号" prop="purchaseNo" align="left" width="140" />
       <el-table-column label="采购单种类" prop="purchaseType" align="left">
-      <template slot-scope="scope">
+        <template slot-scope="scope">
           <div>
             {{ slClassificationOp[scope.row.purchaseType].label }}
           </div>
@@ -58,18 +58,18 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="订单日期" prop="purchaseDate" align="center" width="140"/>
-      <el-table-column label="业务员编号" show-overflow-tooltip prop="userNo" align="left"  width="130" />
+      <el-table-column label="订单日期" prop="purchaseDate" align="center" width="140" />
+      <el-table-column label="业务员编号" show-overflow-tooltip prop="userNo" align="left" width="130" />
       <el-table-column label="业务员名称" show-overflow-tooltip prop="userName" align="left" />
-      <el-table-column label="创建时间" show-overflow-tooltip prop="createDate"  align="center" width="240" />
+      <el-table-column label="创建时间" show-overflow-tooltip prop="createDate" align="center" width="240" />
       <el-table-column label="操作" align="center">
         <template slot-scope="{row,$index}">
-          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>
-          <el-button type="text" @click="handleDelete(row,$index)" style="color:red"><span><i class="el-icon-delete" style="font-size:16px"></i></span></el-button>
+          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
+          <el-button type="text" style="color:red" @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :pageSizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page-sizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 <script>
@@ -87,7 +87,7 @@ export default {
       listQuery: {
         page: 1,
         limit: pageSizes[0],
-        pageSizes:pageSizes,
+        pageSizes: pageSizes
       },
       slClassificationOp: [
         { label: '原材料', value: '0' },
@@ -117,7 +117,7 @@ export default {
       this.getList()
     },
     addSl() {
-      sessionStorage.setItem('purchaseOrderMaentDetl','{}')
+      sessionStorage.setItem('purchaseOrderMaentDetl', '{}')
       this.$router.push({ path: 'purchaseOrderMaentDetl' })
     },
     handleDelete(row, index) {
@@ -129,8 +129,8 @@ export default {
       })
       this.tableData.splice(index, 1)
     },
-    details(row){
-      sessionStorage.setItem('purchaseOrderMaentDetl',JSON.stringify(row))
+    details(row) {
+      sessionStorage.setItem('purchaseOrderMaentDetl', JSON.stringify(row))
       this.$router.push({ path: 'purchaseOrderMaentDetl' })
     }
   }

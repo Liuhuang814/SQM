@@ -173,7 +173,7 @@ export const asyncRoutes = [
         component: () => import('@/views/masterData/partsManagementDetl'),
         name: '添加零件',
         hidden: true,
-        meta: {title: '添加零件'}
+        meta: { title: '添加零件' }
       },
       {
         path: 'performanceEvaluationRules',
@@ -203,7 +203,7 @@ export const asyncRoutes = [
           roles: ['admin']
         }
       }
-      
+
     ]
   },
 
@@ -262,7 +262,7 @@ export const asyncRoutes = [
         meta: { title: '添加来料检验单', noCache: true, activeMenu: '/icMaterialManagement/inspectionManagement' },
         hidden: true
       },
-      
+
       {
         path: 'list1',
         component: () => import('@/views/table/complex-table'),

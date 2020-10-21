@@ -3,7 +3,7 @@
     <el-button style="float:right;margin-bottom:9px" type="primary" plain>
       保存
     </el-button>
-    <div style="clear:both"></div>
+    <div style="clear:both" />
     <el-collapse v-model="activeNames" @change="handleChange">
       <el-collapse-item name="1">
         <template slot="title">
@@ -19,7 +19,7 @@
             <el-col :span="8">
               <el-form-item label="采购种类" prop="purchaseType">
                 <el-select v-model="ruleForm.purchaseType" style="width:100%" placeholder="采购单种类" clearable class="input-item">
-                    <el-option v-for="item in slClassificationOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
+                  <el-option v-for="item in slClassificationOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -47,7 +47,7 @@
             </el-col>
           </el-row>
           <el-row :gutter="20">
-              <el-col :span="8">
+            <el-col :span="8">
               <el-form-item label="订单日期" prop="purchaseDate">
                 <el-input v-model="ruleForm.purchaseDate" clearable />
               </el-form-item>
@@ -108,10 +108,10 @@
           <el-table-column label="单位" align="center">
             <template slot-scope="{row,$index}">
               <el-select v-model="row.e" clearable style="width:100%">
-                  <el-option label="Kg" value="Kg" />
-                  <el-option label="k" value="k" />
-                  <el-option label="psc" value="psc" />
-                </el-select>
+                <el-option label="Kg" value="Kg" />
+                <el-option label="k" value="k" />
+                <el-option label="psc" value="psc" />
+              </el-select>
             </template>
           </el-table-column>
           <el-table-column label="单价" align="center">
@@ -122,9 +122,9 @@
           <el-table-column label="是否含税" align="center">
             <template slot-scope="{row,$index}">
               <el-select v-model="row.g" clearable style="width:100%">
-                  <el-option label="是" value="1" />
-                  <el-option label="否" value="0" />
-                </el-select>
+                <el-option label="是" value="1" />
+                <el-option label="否" value="0" />
+              </el-select>
             </template>
           </el-table-column>
           <el-table-column label="金额" align="center">
@@ -159,7 +159,7 @@
 export default {
   data() {
     return {
-    slClassificationOp: [
+      slClassificationOp: [
         { label: '原材料', value: '0' },
         { label: '外购件', value: '1' },
         { label: '表面处理', value: '2' }
@@ -184,13 +184,13 @@ export default {
         state: { required: true, message: '请选择状态', trigger: 'change' }
       },
       i: 1,
-      rowObj:{}
+      rowObj: {}
     }
   },
-  mounted(){
+  mounted() {
     this.rowObj = JSON.parse(sessionStorage.getItem('purchaseOrderMaentDetl'))
-    if(JSON.stringify(this.rowObj) != '{}'){
-      this.ruleForm = Object.assign({},this.rowObj);
+    if (JSON.stringify(this.rowObj) != '{}') {
+      this.ruleForm = Object.assign({}, this.rowObj)
     }
   },
   methods: {
@@ -200,7 +200,7 @@ export default {
     del(row) {
       const index = this.tableData.findIndex(item => item.id == row.id)
       this.tableData.splice(index, 1)
-    },
+    }
   }
 }
 </script>

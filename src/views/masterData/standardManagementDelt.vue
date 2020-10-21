@@ -3,7 +3,7 @@
     <el-button style="float:right;margin-bottom:9px" type="primary" plain>
       保存
     </el-button>
-    <div style="clear:both"></div>
+    <div style="clear:both" />
     <el-collapse v-model="activeNames" @change="handleChange">
       <el-collapse-item name="1">
         <template slot="title">
@@ -89,8 +89,8 @@
           <el-table-column label="状态" align="center">
             <template slot-scope="{row,$index}">
               <el-select v-model="row.zt" clearable style="width:100%" placeholder="请选择状态">
-                  <el-option v-for="item in slStateOp" :key="item.value" :label="item.label" :value="item.value" />
-                </el-select>
+                <el-option v-for="item in slStateOp" :key="item.value" :label="item.label" :value="item.value" />
+              </el-select>
             </template>
           </el-table-column>
           <el-table-column label="操作" align="center">
@@ -130,13 +130,13 @@ export default {
         state: { required: true, message: '请选择状态', trigger: 'change' }
       },
       i: 1,
-      rowObj:{}
+      rowObj: {}
     }
   },
-  mounted(){
+  mounted() {
     this.rowObj = JSON.parse(sessionStorage.getItem('standardManagementDelt'))
-    if(JSON.stringify(this.rowObj) != '{}'){
-      this.ruleForm = Object.assign({},this.rowObj);
+    if (JSON.stringify(this.rowObj) != '{}') {
+      this.ruleForm = Object.assign({}, this.rowObj)
     }
   },
   methods: {
@@ -146,7 +146,7 @@ export default {
     del(row) {
       const index = this.tableData.findIndex(item => item.id == row.id)
       this.tableData.splice(index, 1)
-    },
+    }
   }
 }
 </script>

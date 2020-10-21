@@ -3,7 +3,7 @@
     <el-button style="float:right;margin-bottom:9px" type="primary" plain>
       保存
     </el-button>
-    <div style="clear:both"></div>
+    <div style="clear:both" />
     <el-collapse v-model="activeNames" @change="handleChange">
       <el-collapse-item name="1">
         <template slot="title">
@@ -51,24 +51,25 @@
           <el-row :gutter="20">
             <el-col :span="8">
               <el-form-item label="备注">
-                <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" maxlength="200" show-word-limit v-model="ruleForm.remark" clearable />
+                <el-input v-model="ruleForm.remark" type="textarea" :autosize="{ minRows: 4, maxRows: 8}" maxlength="200" show-word-limit clearable />
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="图片">
                 <el-upload
-                class="avatar-uploader"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  class="avatar-uploader"
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :show-file-list="false"
+                  :on-success="handleAvatarSuccess"
+                  :before-upload="beforeAvatarUpload"
+                >
+                  <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon" />
                 </el-upload>
               </el-form-item>
             </el-col>
-            
-          </el-row>  
+
+          </el-row>
         </el-form>
       </el-collapse-item>
       <el-collapse-item name="2">
@@ -133,38 +134,38 @@ export default {
         state: { required: true, message: '请选择状态', trigger: 'change' }
       },
       i: 1,
-      rowObj:{}
+      rowObj: {}
     }
   },
-  mounted(){
+  mounted() {
     this.rowObj = JSON.parse(sessionStorage.getItem('partsManagementDetl'))
-    if(JSON.stringify(this.rowObj) != '{}'){
-      this.ruleForm = Object.assign({},this.rowObj);
+    if (JSON.stringify(this.rowObj) != '{}') {
+      this.ruleForm = Object.assign({}, this.rowObj)
     }
   },
   methods: {
     handleAvatarSuccess(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
+      this.imageUrl = URL.createObjectURL(file.raw)
     },
     beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
+      const isJPG = file.type === 'image/jpeg'
+      const isLt2M = file.size / 1024 / 1024 < 2
 
-        if (!isJPG) {
-            this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        if (!isLt2M) {
-            this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isJPG && isLt2M;
-    }, 
+      if (!isJPG) {
+        this.$message.error('上传头像图片只能是 JPG 格式!')
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!')
+      }
+      return isJPG && isLt2M
+    },
     addRow() {
       this.tableData.push({ khbh: '否', khxm: '', id: this.i++ })
     },
     del(row) {
       const index = this.tableData.findIndex(item => item.id == row.id)
       this.tableData.splice(index, 1)
-    },
+    }
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-<!-- 零件管理 -->
+  <!-- 零件管理 -->
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.partNo" placeholder="零件编号" clearable class="input-item" />
@@ -56,12 +56,12 @@
         <template slot-scope="{row,$index}">
           <!-- <el-button type="primary" @click="details(row)" plain icon="el-icon-edit" />
           <el-button type="danger" @click="handleDelete(row,$index)" plain icon="el-icon-delete" /> -->
-          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>
-          <el-button type="text" @click="handleDelete(row,$index)" style="color:red"><span><i class="el-icon-delete" style="font-size:16px"></i></span></el-button>
+          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
+          <el-button type="text" style="color:red" @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :pageSizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page-sizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 <script>
@@ -80,7 +80,7 @@ export default {
       listQuery: {
         page: 1,
         limit: pageSizes[0],
-        pageSizes:pageSizes,
+        pageSizes: pageSizes,
         partNo: undefined,
         partName: undefined,
         specification: undefined,
@@ -115,7 +115,7 @@ export default {
       this.getList()
     },
     addSl() {
-      sessionStorage.setItem('partsManagementDetl','{}')
+      sessionStorage.setItem('partsManagementDetl', '{}')
       this.$router.push({ path: 'partsManagementDetl' })
     },
     handleDelete(row, index) {
@@ -127,8 +127,8 @@ export default {
       })
       this.tableData.splice(index, 1)
     },
-    details(row){
-      sessionStorage.setItem('partsManagementDetl',JSON.stringify(row))
+    details(row) {
+      sessionStorage.setItem('partsManagementDetl', JSON.stringify(row))
       this.$router.push({ path: 'partsManagementDetl' })
     }
   }
