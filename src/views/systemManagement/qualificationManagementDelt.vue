@@ -73,12 +73,12 @@
                 <el-table-column label="序号" type="index" width="50" align="center" />
                 <el-table-column label="资质类别" prop="a" align="center" />
                 <el-table-column label="资质名称" prop="b" align="center" />
-                <el-table-column label="文件类型" prop="c" align="center" />
+                <el-table-column label="文件类型" prop="c" align="center"  width="100"/>
                 <el-table-column label="资质证书" prop="d" align="center"  width="120"/>
                 <el-table-column label="资质证书有效期起始" prop="e" align="center"  width="130"/>
                 <el-table-column label="资质证书有效期截止" prop="f" align="center"  width="130"/>
                 <el-table-column label="完成人" prop="g" align="center" />
-                <el-table-column label="最晚完成时间" prop="h" align="center" />
+                <el-table-column label="最晚完成时间" prop="h" align="center"  width="100"/>
                 <el-table-column label="提醒人" prop="i" align="center" />
                 <el-table-column label="提醒期限" prop="j" align="center" />
                 <el-table-column label="有效性" prop="k" align="center" />

@@ -3,6 +3,7 @@ const jsonObj = require('../src/views/masterData/json')
 const jsonObj1 = require('../src/views/icMaterialManagement/json')
 const jsonObj2 = require('../src/views/complaintManagement/json')
 const jsonObj3 = require('../src/views/systemManagement/json')
+const jsonObj4 = require('../src/views/fileManagement/json')
 // import defaultSettings from '@/settings';
 // 主数据
 const List = jsonObj.supMent.rows
@@ -16,6 +17,10 @@ const noReviewManagementList = jsonObj1.noReviewManagement.rows
 const complaintFormManagementList = jsonObj2.complaintFormManagement.rows
 // 体系管理
 const qualificationManagementList = jsonObj3.qualificationManagement.rows
+const annualAuditPlanList = jsonObj3.annualAuditPlan.rows
+// 文件管理
+const fileTaskManagementList = jsonObj4.fileTaskManagement.rows
+const fileList = jsonObj4.fileList.rows
 
 // for (let i = 0; i < count; i++) {
 //   List.push(Mock.mock({
@@ -285,7 +290,100 @@ module.exports = [
       }
     }
   },
-  
+  //年度审核计划
+  {
+    url: '/vue-element-admin/article/annualAuditPlanList',
+    type: 'get',
+    response: config => {
+      const { standardNo, supplierNo, supplierName, partName, specification, state, page = 1, limit = 20, sort } = config.query
+      let mockList = annualAuditPlanList.filter(item => {
+        if (standardNo && item.standardNo.indexOf(standardNo) < 0) return false
+        if (supplierNo && item.supplierNo.indexOf(supplierNo) < 0) return false
+        if (supplierName && item.supplierName.indexOf(supplierName) < 0) return false
+        if (partName && item.partName.indexOf(partName) < 0) return false
+        if (specification && item.specification.indexOf(specification) < 0) return false
+        if (state && item.state != state) return false
+        return true
+      })
+
+      if (sort === '-id') {
+        mockList = mockList.reverse()
+      }
+
+      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+      return {
+        code: 20000,
+        data: {
+          total: mockList.length,
+          items: pageList
+        }
+      }
+    }
+  },
+  //文件任务管理
+  {
+    url: '/vue-element-admin/article/fileTaskManagementList',
+    type: 'get',
+    response: config => {
+      const { standardNo, supplierNo, supplierName, partName, specification, state, page = 1, limit = 20, sort } = config.query
+      let mockList = fileTaskManagementList.filter(item => {
+        if (standardNo && item.standardNo.indexOf(standardNo) < 0) return false
+        if (supplierNo && item.supplierNo.indexOf(supplierNo) < 0) return false
+        if (supplierName && item.supplierName.indexOf(supplierName) < 0) return false
+        if (partName && item.partName.indexOf(partName) < 0) return false
+        if (specification && item.specification.indexOf(specification) < 0) return false
+        if (state && item.state != state) return false
+        return true
+      })
+
+      if (sort === '-id') {
+        mockList = mockList.reverse()
+      }
+
+      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+      return {
+        code: 20000,
+        data: {
+          total: mockList.length,
+          items: pageList
+        }
+      }
+    }
+  },
+   //文件任务管理
+   {
+    url: '/vue-element-admin/article/fileList',
+    type: 'get',
+    response: config => {
+      const { standardNo, supplierNo, supplierName, partName, specification, state, page = 1, limit = 20, sort } = config.query
+      let mockList = fileList.filter(item => {
+        if (standardNo && item.standardNo.indexOf(standardNo) < 0) return false
+        if (supplierNo && item.supplierNo.indexOf(supplierNo) < 0) return false
+        if (supplierName && item.supplierName.indexOf(supplierName) < 0) return false
+        if (partName && item.partName.indexOf(partName) < 0) return false
+        if (specification && item.specification.indexOf(specification) < 0) return false
+        if (state && item.state != state) return false
+        return true
+      })
+
+      if (sort === '-id') {
+        mockList = mockList.reverse()
+      }
+
+      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+      return {
+        code: 20000,
+        data: {
+          total: mockList.length,
+          items: pageList
+        }
+      }
+    }
+  },
+
   {
     url: '/vue-element-admin/article/detail',
     type: 'get',

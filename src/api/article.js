@@ -64,6 +64,30 @@ export function qualificationManagementList(query) {
     params: query
   })
 }
+// 年度审核计划
+export function annualAuditPlanList(query) {
+  return request({
+    url: '/vue-element-admin/article/annualAuditPlanList',
+    method: 'get',
+    params: query
+  })
+}
+// 文件任务管理
+export function fileTaskManagementList(query) {
+  return request({
+    url: '/vue-element-admin/article/fileTaskManagementList',
+    method: 'get',
+    params: query
+  })
+}
+// 文件列表
+export function fileList(query) {
+  return request({
+    url: '/vue-element-admin/article/fileList',
+    method: 'get',
+    params: query
+  })
+}
 
 export function fetchArticle(id) {
   return request({

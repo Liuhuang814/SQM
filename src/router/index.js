@@ -329,33 +329,50 @@ export const asyncRoutes = [
         meta: { title: '供应商详情', icon: 'list' , activeMenu: '/systemManagement/qualificationManagement'},
         hidden: true
       },
-      
+
       {
-        path: '404',
-        component: () => import('@/views/table/complex-table'),
+        path: 'annualAuditPlan',
+        component: () => import('@/views/systemManagement/annualAuditPlan'),
         name: '年度审核计划',
         meta: { title: '年度审核计划', noCache: true }
-      }
+      },
+      {
+        path: 'annualAuditPlanDelt',
+        component: () => import('@/views/systemManagement/annualAuditPlanDelt'),
+        name: '审核计划详情',
+        meta: { title: '审核计划详情', icon: 'list' , activeMenu: '/systemManagement/annualAuditPlan'},
+        hidden: true
+      },
+
     ]
   },
 
   {
-    path: '/error-log',
+    path: '/fileManagement',
     component: Layout,
     alwaysShow: true,
+    redirect: '/fileManagement/qualificationManagement',
     name: '文件管理',
     meta: { title: '文件管理', noCache: true, icon: 'bug' },
 
     children: [
       {
-        path: 'log',
-        component: () => import('@/views/table/complex-table'),
+        path: 'fileTaskManagement',
+        component: () => import('@/views/fileManagement/fileTaskManagement'),
         name: '文件任务管理',
         meta: { title: '文件任务管理', icon: 'bug' }
       },
       {
-        path: 'log1',
-        component: () => import('@/views/table/complex-table'),
+        path: 'fileTaskManagementDelt',
+        component: () => import('@/views/fileManagement/fileTaskManagementDelt'),
+        name: '审核计划详情',
+        meta: { title: '审核计划详情', icon: 'list' , activeMenu: '/fileManagement/fileTaskManagement'},
+        hidden: true
+      },
+
+      {
+        path: 'fileList',
+        component: () => import('@/views/fileManagement/fileList'),
         name: '文件列表',
         meta: { title: '文件列表', icon: 'bug' }
       }
@@ -363,9 +380,9 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/excel',
+    path: '/statisticalAnalysis',
     component: Layout,
-    redirect: '/excel/export-excel',
+    redirect: '/statisticalAnalysis/incomingBadSummary',
     name: '统计分析',
     meta: {
       title: '统计分析',
@@ -373,8 +390,8 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'export-excel',
-        component: () => import('@/views/table/complex-table'),
+        path: 'incomingBadSummary',
+        component: () => import('@/views/statisticalAnalysis/incomingBadSummary'),
         name: '来料不良汇总',
         meta: { title: '来料不良汇总' }
       },
