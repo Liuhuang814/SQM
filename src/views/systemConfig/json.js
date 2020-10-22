@@ -1,0 +1,93 @@
+const jobsList = {
+    "total": 3,
+    "rows": [{
+            "companyId": null,
+            "companyName": null,
+            "searchValue": null,
+            "createBy": "admin",
+            "createTime": "2019-10-16 20:50:13",
+            "updateBy": null,
+            "updateTime": null,
+            "createUserName": null,
+            "updateUserName": null,
+            "remark": "",
+            "deleteFlag": null,
+            "createUserId": null,
+            "createDate": null,
+            "updateUserId": null,
+            "updateDate": null,
+            "params": {
+
+            },
+            "jobId": 3,
+            "jobName": "文件任务过期提醒",
+            "jobGroup": "DEFAULT",
+            "invokeTarget": "perAppraisalTask.fileRemind()",
+            "cronExpression": "0 0 6 * * ?",
+            "misfirePolicy": "1",
+            "concurrent": "1",
+            "status": "0",
+            "nextValidTime": "2020-10-21 06:00:00"
+        },
+        {
+            "companyId": null,
+            "companyName": null,
+            "searchValue": null,
+            "createBy": "admin",
+            "createTime": "2019-10-16 20:49:46",
+            "updateBy": null,
+            "updateTime": null,
+            "createUserName": null,
+            "updateUserName": null,
+            "remark": "",
+            "deleteFlag": null,
+            "createUserId": null,
+            "createDate": null,
+            "updateUserId": null,
+            "updateDate": null,
+            "params": {
+
+            },
+            "jobId": 2,
+            "jobName": "供应商资质证书过期提醒",
+            "jobGroup": "DEFAULT",
+            "invokeTarget": "perAppraisalTask.supplierQualificationRemind()",
+            "cronExpression": "0 0 5 * * ?",
+            "misfirePolicy": "1",
+            "concurrent": "1",
+            "status": "0",
+            "nextValidTime": "2020-10-21 05:00:00"
+        },
+        {
+            "companyId": null,
+            "companyName": null,
+            "searchValue": null,
+            "createBy": "admin",
+            "createTime": "2019-10-16 17:49:03",
+            "updateBy": null,
+            "updateTime": null,
+            "createUserName": null,
+            "updateUserName": null,
+            "remark": "",
+            "deleteFlag": null,
+            "createUserId": null,
+            "createDate": null,
+            "updateUserId": null,
+            "updateDate": null,
+            "params": {
+
+            },
+            "jobId": 1,
+            "jobName": "供应商评价",
+            "jobGroup": "DEFAULT",
+            "invokeTarget": "perAppraisalTask.intMouthData()",
+            "cronExpression": "0 0 1 10 * ?",
+            "misfirePolicy": "1",
+            "concurrent": "1",
+            "status": "0",
+            "nextValidTime": "2020-11-10 01:00:00"
+        }
+    ],
+    "code": 0
+}
+exports.jobsList = jobsList

@@ -88,7 +88,38 @@ export function fileList(query) {
     params: query
   })
 }
-
+// 来料不良汇总
+export function incomingBadSummaryList(query) {
+  return request({
+    url: '/vue-element-admin/article/incomingBadSummaryList',
+    method: 'get',
+    params: query
+  })
+}
+// 供应商业绩评价
+export function supplierPerformanceEvaluationList(query) {
+  return request({
+    url: '/vue-element-admin/article/supplierPerformanceEvaluationList',
+    method: 'get',
+    params: query
+  })
+}
+// 投诉处理及时性
+export function timelinessComplaintHandlingList(query) {
+  return request({
+    url: '/vue-element-admin/article/timelinessComplaintHandlingList',
+    method: 'get',
+    params: query
+  })
+}
+// 供应商来料批合格率统计
+export function passRateStatisticsList(query) {
+  return request({
+    url: '/vue-element-admin/article/passRateStatisticsList',
+    method: 'get',
+    params: query
+  })
+}
 export function fetchArticle(id) {
   return request({
     url: '/vue-element-admin/article/detail',

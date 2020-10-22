@@ -30,7 +30,7 @@ export function getUpdatedData(oldData, newData, callback) {
 */
 export function getTableBestRows(tableHeight, hasInnerRowComp = '') {
   // tableHeight不包含表格底部的分页和页数高度,表头高度：tableRowHeight,表格不换行的行高：tableRowHeight
-  let tableRowHeight = 45
+  let tableRowHeight = 35
   // switch (defaultSettings.elementSize) {
   //   case 'mini':
   //     tableRowHeight = 36
@@ -48,7 +48,7 @@ export function getTableBestRows(tableHeight, hasInnerRowComp = '') {
 
   // 默认只考虑表格的行内组件尺寸都是mini的情况
   if(hasInnerRowComp === 'textButton') {
-    tableRowHeight += 7 // 考虑行内有文本按钮的情况
+    tableRowHeight += 9 // 考虑行内有文本按钮的情况
   } else if(hasInnerRowComp === 'normal') {
     tableRowHeight += 5 // 考虑行内有普通输入框or下拉框等组件的情况
   }

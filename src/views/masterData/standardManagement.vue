@@ -64,7 +64,7 @@ export default {
   components: { Pagination },
   data() {
     const tableH = document.body.clientHeight - 210
-    const pageSizes = getTableBestRows(tableH)
+    const pageSizes = getTableBestRows(tableH,'textButton')
     return {
       total: 0,
       tableH: tableH, // 表格高度

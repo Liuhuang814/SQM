@@ -22,6 +22,9 @@
         <el-button type="primary" plain @click="handleFilter">
           查询
         </el-button>
+        <el-button type="primary" plain>
+          导出
+        </el-button>
       </div>
     </div>
     <el-table
@@ -31,30 +34,36 @@
       highlight-current-row
       style="width: 100%"
     >
-      <el-table-column label="文件类型" prop="fileType" align="left">
-      <template slot-scope="scope">
+      <el-table-column label="来料日期" prop="incomingDate" align="left" width="90" />
+      <el-table-column label="供应商编号" prop="supplierNo" align="center" width="100" />
+      <el-table-column label="供应商名称" prop="supplierName" align="left" width="200" />
+      <el-table-column label="供应商分类" show-overflow-tooltip prop="supplierType" width="90" align="left">
+        <template slot-scope="scope">
           <div>
-            {{ wjlxOption[scope.row.fileType].label }}
+            {{ slClassificationOp[scope.row.supplierType].label }}
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="文件名称" prop="fileName" align="left" width="260" />
-      <el-table-column label="上传人" show-overflow-tooltip prop="compPeoName" align="left" />
-      <el-table-column label="上传时间" prop="compActualDate" align="left" />
-      <el-table-column label="供应商编号" prop="supplierNo" align="center" />
-      <el-table-column label="供应商名称" prop="supplierName" align="left" width="220" />
-      <el-table-column label="操作" align="center" width="70">
-        <template slot-scope="{row,$index}">
-          <el-button type="text" @click="handleDelete(row,$index)" style="color:red"><span><i class="el-icon-download" style="font-size:16px"></i></span></el-button>
+      <el-table-column label="批号" prop="batchNo" align="left" width="120" />
+      <el-table-column label="品名" prop="partName" align="left" width="60"/>
+      <el-table-column label="产品规格" prop="specification" align="left" width="100" />
+      <el-table-column label="不良原因"  show-overflow-tooltip prop="rejectReason" align="left" />
+      <el-table-column label="处理方式" prop="reviewResult"  width="70" align="left" >
+        <template slot-scope="scope">
+          <div>
+            {{ ['','拒收','退货'][scope.row.reviewResult] }}
+          </div>
         </template>
       </el-table-column>
+      <el-table-column label="确认" prop="confirmingPersonName" width="60" align="left" />
+      <el-table-column label="改善状况" prop="amendConditions" width="70" align="left" />
     </el-table>
     <pagination v-show="total>0" :total="total" :pageSizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 <script>
 import { getTableBestRows } from '@/utils/businessUtil'
-import { fileList } from '@/api/article'
+import { incomingBadSummaryList } from '@/api/article'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 export default {
   components: { Pagination },
@@ -101,7 +110,7 @@ export default {
   },
   methods: {
     getList() {
-      fileList(this.listQuery).then(response => {
+      incomingBadSummaryList(this.listQuery).then(response => {
         this.tableData = response.data.items
         this.total = response.data.total
       })

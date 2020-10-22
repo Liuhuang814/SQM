@@ -396,20 +396,20 @@ export const asyncRoutes = [
         meta: { title: '来料不良汇总' }
       },
       {
-        path: 'export-selected-excel',
-        component: () => import('@/views/table/complex-table'),
+        path: 'passRateStatistics',
+        component: () => import('@/views/statisticalAnalysis/passRateStatistics'),
         name: '供应商来料批合格率统计',
         meta: { title: '供应商来料批合格率统计' }
       },
       {
-        path: 'export-merge-header',
-        component: () => import('@/views/table/complex-table'),
+        path: 'timelinessComplaintHandling',
+        component: () => import('@/views/statisticalAnalysis/timelinessComplaintHandling'),
         name: '投诉处理及时性',
         meta: { title: '投诉处理及时性' }
       },
       {
-        path: 'upload-excel',
-        component: () => import('@/views/table/complex-table'),
+        path: 'supplierPerformanceEvaluation',
+        component: () => import('@/views/statisticalAnalysis/supplierPerformanceEvaluation'),
         name: '供应商业绩评价',
         meta: { title: '供应商业绩评价' }
       }
@@ -417,34 +417,34 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/zip',
+    path: '/systemConfig',
     component: Layout,
-    redirect: '/zip/download',
+    redirect: '/systemConfig/jobs',
     alwaysShow: true,
     name: '系统配置',
     meta: { title: '系统配置', icon: 'zip' },
     children: [
       {
-        path: 'download',
-        component: () => import('@/views/table/complex-table'),
+        path: 'jobs',
+        component: () => import('@/views/systemConfig/jobs'),
         name: '定时任务',
         meta: { title: '定时任务' }
       },
       {
-        path: 'download',
-        component: () => import('@/views/table/complex-table'),
+        path: 'logs',
+        component: () => import('@/views/operationLog/logs'),
         name: '操作日志',
         meta: { title: '操作日志' }
       },
       {
-        path: 'download',
-        component: () => import('@/views/table/complex-table'),
+        path: 'loginLogs',
+        component: () => import('@/views/loginLog/loginLogs'),
         name: '登录日志',
         meta: { title: '登录日志' }
       },
       {
-        path: 'download',
-        component: () => import('@/views/table/complex-table'),
+        path: 'dicts',
+        component: () => import('@/views/dict/dicts'),
         name: '字典管理',
         meta: { title: '字典管理' }
       }
