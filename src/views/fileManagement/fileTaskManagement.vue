@@ -13,18 +13,10 @@
       <el-input v-model="listQuery.supplierName" placeholder="供应商编号" clearable class="input-item" />
       <el-input v-model="listQuery.supplierName" placeholder="供应商名称" clearable class="input-item" />
       <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain @click="addSl">
-          新增
-        </el-button>
-        <el-button type="primary" plain>
-          上传文件
-        </el-button>
-        <el-button type="primary" plain>
-          审批
-        </el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button type="success" icon="el-icon-circle-plus-outline" @click="addSl">新增</el-button>
+        <el-button icon="el-icon-upload2" type="info">上传文件</el-button>
+        <el-button icon="el-icon-edit-outline" type="warning">审批</el-button>
       </div>
     </div>
     <el-table
@@ -67,7 +59,7 @@
           <!-- <el-button type="primary" @click="details(row)" plain icon="el-icon-edit" />
           <el-button type="danger" @click="handleDelete(row,$index)" plain icon="el-icon-delete" /> -->
           <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>
-          <el-button type="text" @click="handleDelete(row,$index)" style="color:red"><span><i class="el-icon-delete" style="font-size:16px"></i></span></el-button>
+          <el-button type="text" @click="handleDelete(row,$index)" ><span><i class="el-icon-delete" style="font-size:16px"></i></span></el-button>
         </template>
       </el-table-column>
     </el-table>

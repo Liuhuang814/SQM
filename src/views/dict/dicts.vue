@@ -7,15 +7,9 @@
         <el-option v-for="item in businessTypeOpt" :key="item.value+item.label" :label="item.label" :value="item.value" />
       </el-select>
       <div style="float:right">
-        <el-button type="primary" @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain @click="showDetail">
-          新增
-        </el-button>        
-        <el-button type="primary" plain>
-          导出
-        </el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button type="success" icon="el-icon-circle-plus-outline" @click="addSl">新增</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
       </div>
     </div>
     <el-table
@@ -73,7 +67,7 @@
             <template slot-scope="{row,$index}">
               <label> {{ $index+1 }}</label>
             </template>
-          </el-table-column>          
+          </el-table-column>
           <el-table-column label="字典编号" align="center">
             <template slot-scope="{row,$index}">
               <el-input v-model="row.dictId" clearable />
@@ -83,13 +77,13 @@
             <template slot-scope="{row,$index}">
               <el-input v-model="row.dicName" clearable />
             </template>
-          </el-table-column>          
-        </el-table>        
+          </el-table-column>
+        </el-table>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="dialogFormVisible = false">
           保存
-        </el-button>        
+        </el-button>
         <el-button type="primary" plain @click="dialogFormVisible = false">
           关闭
         </el-button>
@@ -171,7 +165,7 @@ export default {
             console.log('按下 取消')
           }
         }
-      })      
+      })
     },
     details(row) {
       this.rs = row
@@ -184,7 +178,7 @@ export default {
     pagination(pageNo, pageSize, array) {
       var offset = (pageNo - 1) * pageSize;
       return (offset + pageSize >= array.length) ? array.slice(offset, array.length) : array.slice(offset, offset + pageSize);
-    }  
+    }
   }
 }
 </script>

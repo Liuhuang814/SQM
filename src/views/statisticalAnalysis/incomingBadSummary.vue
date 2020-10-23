@@ -19,12 +19,8 @@
         <el-option v-for="item in slClassificationOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
       </el-select>
       <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain>
-          导出
-        </el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
       </div>
     </div>
     <el-table

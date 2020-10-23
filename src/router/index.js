@@ -70,19 +70,19 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: '首页',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
-      }
-    ]
-  }
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/dashboard',
+  //   children: [
+  //     {
+  //       path: 'dashboard',
+  //       component: () => import('@/views/dashboard/index'),
+  //       name: '首页',
+  //       meta: { title: '首页', icon: 'dashboard', affix: true }
+  //     }
+  //   ]
+  // }
   // {
   //   path: '/documentation',
   //   component: Layout,
@@ -137,7 +137,7 @@ export const asyncRoutes = [
     name: '主数据',
     meta: {
       title: '主数据',
-      icon: 'lock',
+      icon: 'masterData',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
     children: [
@@ -233,14 +233,14 @@ export const asyncRoutes = [
     name: '来料管理',
     meta: {
       title: '来料管理',
-      icon: 'el-icon-s-help'
+      icon: 'llgl'
     },
     children: [
       {
         path: 'purchaseOrderMaent',
         component: () => import('@/views/icMaterialManagement/purchaseOrderMaent'),
         name: '采购单管理',
-        meta: { title: '采购单管理', icon: 'edit' }
+        meta: { title: '采购单管理' }
       },
       {
         path: 'purchaseOrderMaentDetl',
@@ -286,7 +286,7 @@ export const asyncRoutes = [
     name: '投诉管理',
     meta: {
       title: '投诉管理',
-      icon: 'el-icon-s-help'
+      icon: 'tsgl'
     },
     alwaysShow: true,
     children: [
@@ -313,7 +313,7 @@ export const asyncRoutes = [
     name: '体系管理',
     meta: {
       title: '体系管理',
-      icon: '404'
+      icon: 'txgl'
     },
     children: [
       {
@@ -353,7 +353,7 @@ export const asyncRoutes = [
     alwaysShow: true,
     redirect: '/fileManagement/qualificationManagement',
     name: '文件管理',
-    meta: { title: '文件管理', noCache: true, icon: 'bug' },
+    meta: { title: '文件管理', noCache: true, icon: 'wjgl' },
 
     children: [
       {
@@ -386,7 +386,7 @@ export const asyncRoutes = [
     name: '统计分析',
     meta: {
       title: '统计分析',
-      icon: 'excel'
+      icon: 'tjfx'
     },
     children: [
       {
@@ -422,7 +422,7 @@ export const asyncRoutes = [
     redirect: '/systemConfig/jobs',
     alwaysShow: true,
     name: '系统配置',
-    meta: { title: '系统配置', icon: 'zip' },
+    meta: { title: '系统配置', icon: 'xtpz' },
     children: [
       {
         path: 'jobs',

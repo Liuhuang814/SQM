@@ -1,29 +1,35 @@
 <template>
   <!-- 效验标准管理 -->
   <div class="app-container">
-    <div class="filter-container">
-      <el-input v-model="listQuery.standardNo" placeholder="标准编号" clearable class="input-item" />
-      <el-input v-model="listQuery.supplierNo" placeholder="供应商编号" clearable class="input-item" />
-      <el-input v-model="listQuery.supplierName" placeholder="供应商名称" clearable class="input-item" />
-      <el-input v-model="listQuery.partName" placeholder="品名" clearable class="input-item" />
-      <el-input v-model="listQuery.specification" placeholder="产品规格" clearable class="input-item" />
-      <el-select v-model="listQuery.state" placeholder="状态" clearable class="input-item">
-        <el-option v-for="item in slStateOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
-      </el-select>
-      <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain @click="addSl">
-          新增
-        </el-button>
-        <el-button type="primary" plain>
-          导入
-        </el-button>
-        <el-button type="primary" plain>
-          导出
-        </el-button>
+    <div id="area-condition-bar">
+      <div id="area-condition">
+        <div class="condition">
+          <el-input v-model="listQuery.standardNo" placeholder="标准编号" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-input v-model="listQuery.supplierNo" placeholder="供应商编号" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-input v-model="listQuery.supplierName" placeholder="供应商名称" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-input v-model="listQuery.partName" placeholder="品名" clearable class="input-item" />
+        </div>
+        <div class="condition">
+         <el-input v-model="listQuery.specification" placeholder="产品规格" clearable class="input-item" />
+        </div>
+        <div class="condition">
+          <el-select v-model="listQuery.state" placeholder="状态" clearable class="input-item">
+            <el-option v-for="item in slStateOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
+          </el-select>
+        </div>
       </div>
+      <operation id="area-operation">
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button type="success" icon="el-icon-circle-plus-outline" @click="addSl">新增</el-button>
+        <el-button icon="el-icon-upload2" type="info">导入</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
+      </operation>
     </div>
     <el-table
       :data="tableData"
@@ -49,7 +55,7 @@
       <el-table-column label="操作" align="center">
         <template slot-scope="{row,$index}">
           <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
-          <el-button type="text" style="color:red" @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
+          <el-button type="text"  @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
         </template>
       </el-table-column>
     </el-table>

@@ -32,12 +32,12 @@
         </div>
       </div>
       <operation id="area-operation">
-        <el-button type="primary" plain @click="handleFilter">查询</el-button>
-        <el-button type="primary" plain @click="addSl">新增</el-button>
-        <el-button type="primary" plain >审核计划审批</el-button>
-        <el-button type="primary" plain >审核结果录入</el-button>
-        <el-button type="primary" plain >审核结果审批</el-button>
-        <el-button type="primary" plain >导出</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button type="success" icon="el-icon-circle-plus-outline" @click="addSl">新增</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
+        <el-button icon="el-icon-document" type="info">审核计划审批</el-button>
+        <el-button icon="el-icon-edit-outline" type="warning" plain>审核结果录入</el-button>
+        <el-button icon="el-icon-document" type="primary" plain>审核结果审批</el-button>
       </operation>
     </div>
     <el-table

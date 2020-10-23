@@ -33,10 +33,10 @@
         </div>
       </div>
       <operation id="area-operation">
-        <el-button type="primary" plain @click="handleFilter">查询</el-button>
-        <el-button type="primary" plain @click="addSl">新增</el-button>
-        <el-button type="primary" plain>导出</el-button>
-        <el-button type="primary" plain>发起投诉</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button type="success" icon="el-icon-circle-plus-outline" @click="addSl">新增</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
+        <el-button icon="el-icon-upload2" type="info">发起投诉</el-button>
       </operation>
     </div>
     <el-table
@@ -90,7 +90,7 @@
       <el-table-column label="操作" fixed="right" align="center">
         <template slot-scope="{row,$index}">
           <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
-          <el-button type="text" style="color:red" @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
+          <el-button type="text"  @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
         </template>
       </el-table-column>
     </el-table>

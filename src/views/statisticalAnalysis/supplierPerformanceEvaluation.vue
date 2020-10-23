@@ -10,12 +10,8 @@
         placeholder="选择年份">
       </el-date-picker>
       <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain>
-          导出
-        </el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
       </div>
     </div>
     <el-table
@@ -26,7 +22,7 @@
       style="width: 100%"
     >
       <el-table-column label="供应商编号" prop="supplierNo" align="left"  width="100"/>
-      <el-table-column label="供应商名称" prop="supplierName" align="left" />
+      <el-table-column label="供应商名称" show-overflow-tooltip prop="supplierName" align="left" />
       <el-table-column label="年份" show-overflow-tooltip prop="particularYear" width="100" align="left" />
       <el-table-column label="1月" prop="january" align="left" width="70" >
       <template slot-scope="scope">

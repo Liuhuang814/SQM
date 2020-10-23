@@ -38,7 +38,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="供应商分类" prop="state">
+              <el-form-item label="供应商状态" prop="state">
                 <el-select v-model="ruleForm.state" clearable style="width:100%" placeholder="请选择供应商状态">
                   <el-option v-for="item in slStateOp" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
@@ -86,7 +86,7 @@
           </el-table-column>
           <el-table-column label="操作" align="center">
             <template slot-scope="{row,$index}">
-              <el-button type="text"> <span style="color:red" @click="del(row)">删除</span> </el-button>
+              <el-button type="text"> <span  @click="del(row)">删除</span> </el-button>
               <el-button type="text" @click="setMrlxr(row)">设置默认联系人</el-button>
             </template>
           </el-table-column>
@@ -187,7 +187,7 @@
           </el-table-column>
           <el-table-column label="操作"  width="60" align="center">
             <template slot-scope="{row,$index}">
-              <el-button type="text"> <span style="color:red" @click="del1(row)">删除</span> </el-button>
+              <el-button type="text"> <span  @click="del1(row)">删除</span> </el-button>
             </template>
           </el-table-column>
         </el-table>

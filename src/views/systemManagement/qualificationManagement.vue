@@ -37,7 +37,7 @@
         </div>
       </div>
       <operation id="area-operation">
-        <el-button type="primary" plain @click="handleFilter">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
       </operation>
     </div>
     <el-table

@@ -259,7 +259,8 @@ export default {
       rowObj:{},
       ruleForm: {
         supplierType:'0',
-        supplierLevel:'0'
+        supplierLevel:'0',
+        supplier:{}
       },
       rules: {
         standardNo: { required: true, message: '请输入标准编号', trigger: 'blur' },

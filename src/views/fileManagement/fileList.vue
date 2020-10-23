@@ -19,7 +19,7 @@
       <el-input v-model="listQuery.supplierName" placeholder="供应商编号" clearable class="input-item" />
       <el-input v-model="listQuery.supplierName" placeholder="供应商名称" clearable class="input-item" />
       <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">
           查询
         </el-button>
       </div>
@@ -45,7 +45,7 @@
       <el-table-column label="供应商名称" prop="supplierName" align="left" width="220" />
       <el-table-column label="操作" align="center" width="70">
         <template slot-scope="{row,$index}">
-          <el-button type="text" @click="handleDelete(row,$index)" style="color:red"><span><i class="el-icon-download" style="font-size:16px"></i></span></el-button>
+          <el-button type="text" @click="handleDelete(row,$index)" ><span><i class="el-icon-download" style="font-size:16px"></i></span></el-button>
         </template>
       </el-table-column>
     </el-table>

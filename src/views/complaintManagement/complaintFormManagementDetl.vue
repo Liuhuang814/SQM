@@ -204,7 +204,7 @@
           <el-table-column label="附件" prop="fj" align="center" />
           <el-table-column label="审批时间" prop="spsj" align="center" />
         </el-table>
-      </el-collapse-item>   
+      </el-collapse-item>
     </el-collapse>
   </div>
 </template>
@@ -236,6 +236,8 @@ export default {
         { label: '已关闭', value: '1' }
       ],
       ruleForm: {
+        part:{},
+        supplier:{}
       },
       rules: {
         standardNo: { required: true, message: '请输入标准编号', trigger: 'blur' },

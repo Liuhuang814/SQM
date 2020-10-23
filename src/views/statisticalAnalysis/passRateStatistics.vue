@@ -13,15 +13,9 @@
       <el-input v-model="listQuery.supplierName" placeholder="供应商编号" clearable class="input-item" />
       <el-input v-model="listQuery.supplierName" placeholder="供应商名称" clearable class="input-item" />
       <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain>
-          导出
-        </el-button>
-        <el-button type="primary" plain>
-          图表
-        </el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
+        <el-button icon="el-icon-s-data" type="info">图表</el-button>
       </div>
     </div>
     <el-table

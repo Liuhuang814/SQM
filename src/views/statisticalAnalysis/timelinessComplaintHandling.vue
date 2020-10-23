@@ -13,12 +13,8 @@
         end-placeholder="投诉结束日期">
       </el-date-picker>
       <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain>
-          导出
-        </el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
       </div>
     </div>
     <el-table

@@ -9,14 +9,10 @@
       </el-select>
       <el-select v-model="listQuery.state" placeholder="操作结果" clearable class="input-item">
         <el-option v-for="item in slStateOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
-      </el-select>      
+      </el-select>
       <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain>
-          导出
-        </el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
       </div>
     </div>
     <el-table
@@ -158,7 +154,7 @@ export default {
             console.log('按下 取消')
           }
         }
-      })      
+      })
     },
     details(row) {
       this.rs = row
@@ -171,7 +167,7 @@ export default {
     pagination(pageNo, pageSize, array) {
       var offset = (pageNo - 1) * pageSize;
       return (offset + pageSize >= array.length) ? array.slice(offset, array.length) : array.slice(offset, offset + pageSize);
-    }    
+    }
   }
 }
 </script>

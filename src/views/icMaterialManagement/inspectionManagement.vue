@@ -29,48 +29,14 @@
         </div>
       </div>
       <operation id="area-operation">
-        <el-button type="primary" plain @click="handleFilter">查询</el-button>
-        <el-button type="primary" plain @click="addSl">新增</el-button>
-        <el-button type="primary" plain>导出</el-button>
-        <el-button type="primary" plain>导出检验报告</el-button>
-        <el-button type="primary" plain>导出入库单</el-button>
-        <el-button type="primary" plain>发起不合格评审</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button type="success" icon="el-icon-circle-plus-outline" @click="addSl">新增</el-button>
+        <el-button icon="el-icon-download" type="warning">导出</el-button>
+        <el-button icon="el-icon-circle-plus-outline" type="info">发起不合格评审</el-button>
+        <el-button icon="el-icon-download" type="info" plain>导出检验报告</el-button>
+        <el-button icon="el-icon-download" type="warning" plain>导出入库单</el-button>
       </operation>
     </div>
-    <!-- <div class="filter-container"  style="float:left">
-      <el-input v-model="listQuery.inspectionNo" placeholder="检验单编号" clearable class="input-item" />
-      <el-input v-model="listQuery.purchaseNo" placeholder="采购单号" clearable class="input-item" />
-      <el-input v-model="listQuery.batchNo" placeholder="批号" clearable class="input-item" />
-      <el-select v-model="listQuery.determine" placeholder="综合判定" clearable class="input-item">
-        <el-option v-for="item in slClassificationOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
-      </el-select>
-      <el-select v-model="listQuery.environmental" placeholder="是否环保" clearable class="input-item">
-        <el-option v-for="item in slClassificationOp1" :key="item.value+item.label" :label="item.label" :value="item.value" />
-      </el-select>
-      <el-select v-model="listQuery.state" placeholder="状态" clearable class="input-item">
-        <el-option v-for="item in slStateOp" :key="item.value+item.label" :label="item.label" :value="item.value" />
-      </el-select>
-    </div> -->
-      <!-- <div style="float:right">
-        <el-button type="primary" plain @click="handleFilter">
-          查询
-        </el-button>
-        <el-button type="primary" plain @click="addSl">
-          新增
-        </el-button>
-        <el-button type="primary" plain>
-          导出
-        </el-button>
-        <el-button type="primary" plain>
-          导出检验报告
-        </el-button>
-        <el-button type="primary" plain>
-          导出入库单
-        </el-button>
-        <el-button type="primary" plain>
-          发起不合格评审
-        </el-button>
-      </div> -->
     <el-table
       :data="tableData"
       stripe
@@ -127,7 +93,7 @@
       <el-table-column label="操作" fixed="right" align="center">
         <template slot-scope="{row,$index}">
           <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
-          <el-button type="text" style="color:red" @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
+          <el-button type="text"  @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -170,7 +136,7 @@ export default {
     this.getList()
   },
   methods: {
-    getList() { 
+    getList() {
       inspectionManagementList(this.listQuery).then(response => {
         console.log(response)
         this.tableData = response.data.items
