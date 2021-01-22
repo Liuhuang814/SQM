@@ -11,89 +11,89 @@
         <h5 class="login-title"> 账号登录 </h5>
         <!-- <h3 class="login-sub-title"> 请使用账号密码登录 </h3> -->
         <div class="form-area">
-              <el-form
-                ref="loginForm"
-                :model="baseForm"
-                :rules="formRules"
-                label-width="0px"
+          <el-form
+            ref="loginForm"
+            :model="baseForm"
+            :rules="formRules"
+            label-width="0px"
+          >
+            <el-form-item label prop="username">
+              <el-input
+                v-model.trim="baseForm.username"
+                :minlength="3"
+                :maxlength="18"
+                size="large"
+                placeholder="账号"
+                clearable
               >
-                <el-form-item label prop="username">
-                  <el-input
-                    v-model.trim="baseForm.username"
-                    :minlength="3"
-                    :maxlength="18"
-                    size="large"
-                    placeholder="账号"
-                    clearable
-                  >
-                    <img
-                      slot="prefix"
-                      src="~@/assets/img/username.png"
-                      alt
-                      class="inner-icon"
-                    >
-                  </el-input>
-                </el-form-item>
-
-                <div style="position:relative;">
-                  <el-form-item label prop="password">
-                    <el-input
-                      v-if="!baseForm.password.length"
-                      ref="pwd"
-                      v-model.trim="baseForm.password"
-                      :minlength="6"
-                      :maxlength="18"
-                      size="large"
-                      type="text"
-                      placeholder="密码"
-                    >
-                      <img
-                        slot="prefix"
-                        src="~@/assets/img/password.png"
-                        alt
-                        class="inner-icon"
-                      >
-                    </el-input>
-                    <el-input
-                      v-else
-                      ref="pwd"
-                      v-model.trim="baseForm.password"
-                      :minlength="6"
-                      :maxlength="18"
-                      size="large"
-                      type="password"
-                      placeholder="密码"
-                      @keyup.enter.native="submitForm()"
-                    >
-                      <img
-                        slot="prefix"
-                        src="~@/assets/img/password.png"
-                        alt
-                        class="inner-icon"
-                      >
-                    </el-input>
-                  </el-form-item>
-                </div>
-                <div style="overflow: hidden;">
-                  <el-checkbox
-                    v-model="rememberAccount"
-                    class="c-l-f"
-                    true-label="1"
-                    false-label="0"
-                  >记住账号</el-checkbox>
-                </div>
-              </el-form>
-              <div class="loginBtn">
-                <el-button
-                  :loading="loading"
-                  :disabled="loading"
-                  type="primary"
-                  class="btn-sub"
-                  @click="handleLogin()"
+                <img
+                  slot="prefix"
+                  src="~@/assets/img/username.png"
+                  alt
+                  class="inner-icon"
                 >
-                  <span class="logText">登录</span>
-                </el-button>
-              </div>
+              </el-input>
+            </el-form-item>
+
+            <div style="position:relative;">
+              <el-form-item label prop="password">
+                <el-input
+                  v-if="!baseForm.password.length"
+                  ref="pwd"
+                  v-model.trim="baseForm.password"
+                  :minlength="6"
+                  :maxlength="18"
+                  size="large"
+                  type="text"
+                  placeholder="密码"
+                >
+                  <img
+                    slot="prefix"
+                    src="~@/assets/img/password.png"
+                    alt
+                    class="inner-icon"
+                  >
+                </el-input>
+                <el-input
+                  v-else
+                  ref="pwd"
+                  v-model.trim="baseForm.password"
+                  :minlength="6"
+                  :maxlength="18"
+                  size="large"
+                  type="password"
+                  placeholder="密码"
+                  @keyup.enter.native="submitForm()"
+                >
+                  <img
+                    slot="prefix"
+                    src="~@/assets/img/password.png"
+                    alt
+                    class="inner-icon"
+                  >
+                </el-input>
+              </el-form-item>
+            </div>
+            <div style="overflow: hidden;">
+              <el-checkbox
+                v-model="rememberAccount"
+                class="c-l-f"
+                true-label="1"
+                false-label="0"
+              >记住账号</el-checkbox>
+            </div>
+          </el-form>
+          <div class="loginBtn">
+            <el-button
+              :loading="loading"
+              :disabled="loading"
+              type="primary"
+              class="btn-sub"
+              @click="handleLogin()"
+            >
+              <span class="logText">登录</span>
+            </el-button>
+          </div>
         </div>
       </div>
     </div>
@@ -119,8 +119,8 @@ export default {
       }
     }
     return {
-      rememberAccount:true,
-      baseForm:{
+      rememberAccount: true,
+      baseForm: {
         username: 'admin',
         password: '111111'
       },
@@ -292,8 +292,8 @@ export default {
 }
 .loginBox {
   border-radius: 12px;
-  width: 26.5%;
-  height: 390px;
+  width: 32.5%;
+  height: 320px;
   /* background: rgba(254, 254, 254, 0.4); */
   background: #ffffff;
   box-shadow: 10px 10px 10px 0px rgba(33, 113, 196, 0.2);
@@ -315,7 +315,7 @@ export default {
   float: left;
   text-align: center;
   width: 100%;
-  padding-top: 15px;
+  padding-top: 8px;
   /* height: 375px; */
   border-radius: 2px;
   /* background: rgba(255, 255, 255, 0.4); */
@@ -323,10 +323,10 @@ export default {
   position: relative;
 }
 .form-area .el-form {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .form-area .el-form-item {
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 .inner-icon {
   margin-top: 8px;

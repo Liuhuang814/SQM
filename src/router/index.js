@@ -38,38 +38,40 @@ import nestedRouter from './modules/nested'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [
-  {
-    path: '/redirect',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect/index')
-      }
-    ]
-  },
-  {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
-  {
-    path: '/auth-redirect',
-    component: () => import('@/views/login/auth-redirect'),
-    hidden: true
-  },
-  {
-    path: '/404',
-    component: () => import('@/views/error-page/404'),
-    hidden: true
-  },
-  {
-    path: '/401',
-    component: () => import('@/views/error-page/401'),
-    hidden: true
-  },
+export const constantRoutes = [{
+  path: '/redirect',
+  component: Layout,
+  hidden: true,
+  children: [{
+    path: '/redirect/:path(.*)',
+    component: () =>
+      import ('@/views/redirect/index')
+  }]
+},
+{
+  path: '/login',
+  component: () =>
+    import ('@/views/login/index'),
+  hidden: true
+},
+{
+  path: '/auth-redirect',
+  component: () =>
+    import ('@/views/login/auth-redirect'),
+  hidden: true
+},
+{
+  path: '/404',
+  component: () =>
+    import ('@/views/error-page/404'),
+  hidden: true
+},
+{
+  path: '/401',
+  component: () =>
+    import ('@/views/error-page/401'),
+  hidden: true
+}
   // {
   //   path: '/',
   //   component: Layout,
@@ -128,387 +130,409 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = [
-  {
-    path: '/masterData',
-    component: Layout,
-    redirect: '/masterData/supplierManagement',
-    alwaysShow: true, // will always show the root menu
-    name: '主数据',
+export const asyncRoutes = [{
+  path: '/',
+  component: Layout,
+  redirect: 'supplierManagement',
+  alwaysShow: true, // will always show the root menu
+  name: '主体数据',
+  meta: {
+    title: '主体数据',
+    icon: 'masterData',
+    roles: ['admin', 'editor'] // you can set roles in root nav
+  },
+  children: [{
+    path: 'supplierManagement',
+    component: () =>
+      import ('@/views/masterData/supplierManagement'),
+    name: '供应商管理',
     meta: {
-      title: '主数据',
-      icon: 'masterData',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'supplierManagement',
-        component: () => import('@/views/masterData/supplierManagement'),
-        name: '供应商管理',
-        meta: {
-          title: '供应商管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'supplierManagementdelt',
-        component: () => import('@/views/masterData/supplierManagementdelt'),
-        name: '添加供应商',
-        meta: {
-          title: '添加供应商',
-          roles: ['admin'] // or you can only set roles in sub nav
-        },
-        hidden: true
-      },
-      {
-        path: 'partsManagement',
-        component: () => import('@/views/masterData/partsManagement'),
-        name: '零件管理',
-        meta: {
-          title: '零件管理'
-        }
-      },
-      {
-        path: 'partsManagementDetl',
-        component: () => import('@/views/masterData/partsManagementDetl'),
-        name: '添加零件',
-        hidden: true,
-        meta: { title: '添加零件' }
-      },
-      {
-        path: 'performanceEvaluationRules',
-        component: () => import('@/views/masterData/performanceEvaluationRules'),
-        name: '供应商绩效评价规则',
-        meta: {
-          title: '供应商绩效评价规则',
-          roles: ['admin']
-        }
-      },
-      {
-        path: 'standardManagement',
-        component: () => import('@/views/masterData/standardManagement'),
-        name: '效验标准管理',
-        meta: {
-          title: '效验标准管理',
-          roles: ['admin']
-        }
-      },
-      {
-        path: 'standardManagementDelt',
-        component: () => import('@/views/masterData/standardManagementDelt'),
-        name: '添加效验标准',
-        hidden: true,
-        meta: {
-          title: '添加效验标准',
-          roles: ['admin']
-        }
-      }
-
-    ]
+      title: '供应商管理',
+      roles: ['admin'] // or you can only set roles in sub nav
+    }
   },
-
-  // {
-  //   path: '/icon',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/icons/index'),
-  //       name: 'Icons',
-  //       meta: { title: 'Icons', icon: 'icon', noCache: true }
-  //     }
-  //   ]
-  // },
-
-  /** when your routing map is too long, you can split it into small modules **/
-  // componentsRouter,
-  // chartsRouter,
-  // nestedRouter,
-  // tableRouter,
-
   {
-    path: '/icMaterialManagement',
-    component: Layout,
-    redirect: '/icMaterialManagement/purchaseOrderMaent',
-    name: '来料管理',
+    path: 'supplierManagementdelt',
+    component: () =>
+      import ('@/views/masterData/supplierManagementdelt'),
+    name: '添加供应商',
     meta: {
-      title: '来料管理',
-      icon: 'llgl'
+      title: '添加供应商',
+      roles: ['admin'] // or you can only set roles in sub nav
     },
-    children: [
-      {
-        path: 'purchaseOrderMaent',
-        component: () => import('@/views/icMaterialManagement/purchaseOrderMaent'),
-        name: '采购单管理',
-        meta: { title: '采购单管理' }
-      },
-      {
-        path: 'purchaseOrderMaentDetl',
-        component: () => import('@/views/icMaterialManagement/purchaseOrderMaentDetl'),
-        name: '添加采购单',
-        meta: { title: '添加采购单', noCache: true, activeMenu: '/icMaterialManagement/purchaseOrderMaent' },
-        hidden: true
-      },
-      {
-        path: 'inspectionManagement',
-        component: () => import('@/views/icMaterialManagement/inspectionManagement'),
-        name: '来料检验管理',
-        meta: { title: '来料检验管理', icon: 'list' }
-      },
-      {
-        path: 'inspectionManagementDetl',
-        component: () => import('@/views/icMaterialManagement/inspectionManagementDetl'),
-        name: '添加来料检验单',
-        meta: { title: '添加来料检验单', noCache: true, activeMenu: '/icMaterialManagement/inspectionManagement' },
-        hidden: true
-      },
-
-      {
-        path: 'noReviewManagement',
-        component: () => import('@/views/icMaterialManagement/noReviewManagement'),
-        name: '不合格评审单管理',
-        meta: { title: '不合格评审单管理', icon: 'list' }
-      },
-      {
-        path: 'noReviewManagementDetl',
-        component: () => import('@/views/icMaterialManagement/noReviewManagementDetl'),
-        name: '不合格评审单详情',
-        meta: { title: '不合格评审单详情', icon: 'list' , activeMenu: '/icMaterialManagement/noReviewManagement'},
-        hidden: true
-      },
-    ]
+    hidden: true
   },
-
   {
-    path: '/complaintManagement',
-    redirect: '/icMaterialManagement/complaintFormManagement',
-    component: Layout,
-    name: '投诉管理',
+    path: 'partsManagement',
+    component: () =>
+      import ('@/views/masterData/partsManagement'),
+    name: '零件管理',
     meta: {
-      title: '投诉管理',
-      icon: 'tsgl'
-    },
-    alwaysShow: true,
-    children: [
-      {
-        path: 'complaintFormManagement',
-        component: () => import('@/views/complaintManagement/complaintFormManagement'),
-        name: '投诉单管理',
-        meta: { title: '投诉单管理', icon: 'tab' }
-      },
-      {
-        path: 'complaintFormManagementDetl',
-        component: () => import('@/views/complaintManagement/complaintFormManagementDetl'),
-        name: '添加投诉单',
-        meta: { title: '添加投诉单', icon: 'list' , activeMenu: '/complaintManagement/complaintFormManagement'},
-        hidden: true
-      }
-    ]
+      title: '零件管理'
+    }
   },
-
   {
-    path: '/systemManagement',
-    component: Layout,
-    redirect: '/systemManagement/qualificationManagement',
-    name: '体系管理',
+    path: 'partsManagementDetl',
+    component: () =>
+      import ('@/views/masterData/partsManagementDetl'),
+    name: '添加零件',
+    hidden: true,
+    meta: { title: '添加零件' }
+  },
+  {
+    path: 'performanceEvaluationRules',
+    component: () =>
+      import ('@/views/masterData/performanceEvaluationRules'),
+    name: '绩效评价规则',
     meta: {
-      title: '体系管理',
-      icon: 'txgl'
-    },
-    children: [
-      {
-        path: 'qualificationManagement',
-        component: () => import('@/views/systemManagement/qualificationManagement'),
-        name: '资质管理',
-        meta: { title: '资质管理', noCache: true }
-      },
-      {
-        path: 'qualificationManagementDelt',
-        component: () => import('@/views/systemManagement/qualificationManagementDelt'),
-        name: '供应商详情',
-        meta: { title: '供应商详情', icon: 'list' , activeMenu: '/systemManagement/qualificationManagement'},
-        hidden: true
-      },
-
-      {
-        path: 'annualAuditPlan',
-        component: () => import('@/views/systemManagement/annualAuditPlan'),
-        name: '年度审核计划',
-        meta: { title: '年度审核计划', noCache: true }
-      },
-      {
-        path: 'annualAuditPlanDelt',
-        component: () => import('@/views/systemManagement/annualAuditPlanDelt'),
-        name: '审核计划详情',
-        meta: { title: '审核计划详情', icon: 'list' , activeMenu: '/systemManagement/annualAuditPlan'},
-        hidden: true
-      },
-
-    ]
+      title: '绩效评价规则',
+      roles: ['admin']
+    }
   },
-
   {
-    path: '/fileManagement',
-    component: Layout,
-    alwaysShow: true,
-    redirect: '/fileManagement/qualificationManagement',
-    name: '文件管理',
-    meta: { title: '文件管理', noCache: true, icon: 'wjgl' },
-
-    children: [
-      {
-        path: 'fileTaskManagement',
-        component: () => import('@/views/fileManagement/fileTaskManagement'),
-        name: '文件任务管理',
-        meta: { title: '文件任务管理', icon: 'bug' }
-      },
-      {
-        path: 'fileTaskManagementDelt',
-        component: () => import('@/views/fileManagement/fileTaskManagementDelt'),
-        name: '审核计划详情',
-        meta: { title: '审核计划详情', icon: 'list' , activeMenu: '/fileManagement/fileTaskManagement'},
-        hidden: true
-      },
-
-      {
-        path: 'fileList',
-        component: () => import('@/views/fileManagement/fileList'),
-        name: '文件列表',
-        meta: { title: '文件列表', icon: 'bug' }
-      }
-    ]
-  },
-
-  {
-    path: '/statisticalAnalysis',
-    component: Layout,
-    redirect: '/statisticalAnalysis/incomingBadSummary',
-    name: '统计分析',
+    path: 'standardManagement',
+    component: () =>
+      import ('@/views/masterData/standardManagement'),
+    name: '效验标准管理',
     meta: {
-      title: '统计分析',
-      icon: 'tjfx'
-    },
-    children: [
-      {
-        path: 'incomingBadSummary',
-        component: () => import('@/views/statisticalAnalysis/incomingBadSummary'),
-        name: '来料不良汇总',
-        meta: { title: '来料不良汇总' }
-      },
-      {
-        path: 'passRateStatistics',
-        component: () => import('@/views/statisticalAnalysis/passRateStatistics'),
-        name: '供应商来料批合格率统计',
-        meta: { title: '供应商来料批合格率统计' }
-      },
-      {
-        path: 'timelinessComplaintHandling',
-        component: () => import('@/views/statisticalAnalysis/timelinessComplaintHandling'),
-        name: '投诉处理及时性',
-        meta: { title: '投诉处理及时性' }
-      },
-      {
-        path: 'supplierPerformanceEvaluation',
-        component: () => import('@/views/statisticalAnalysis/supplierPerformanceEvaluation'),
-        name: '供应商业绩评价',
-        meta: { title: '供应商业绩评价' }
-      }
-    ]
+      title: '效验标准管理',
+      roles: ['admin']
+    }
+  },
+  {
+    path: 'standardManagementDelt',
+    component: () =>
+      import ('@/views/masterData/standardManagementDelt'),
+    name: '添加效验标准',
+    hidden: true,
+    meta: {
+      title: '添加效验标准',
+      roles: ['admin']
+    }
+  }
+
+  ]
+},
+
+// {
+//   path: '/icon',
+//   component: Layout,
+//   children: [
+//     {
+//       path: 'index',
+//       component: () => import('@/views/icons/index'),
+//       name: 'Icons',
+//       meta: { title: 'Icons', icon: 'icon', noCache: true }
+//     }
+//   ]
+// },
+
+/** when your routing map is too long, you can split it into small modules **/
+// componentsRouter,
+// chartsRouter,
+// nestedRouter,
+// tableRouter,
+
+{
+  path: '/icMaterialManagement',
+  component: Layout,
+  redirect: '/icMaterialManagement/purchaseOrderMaent',
+  name: '来料管理',
+  meta: {
+    title: '来料管理',
+    icon: 'llgl'
+  },
+  children: [{
+    path: 'purchaseOrderMaent',
+    component: () =>
+      import ('@/views/icMaterialManagement/purchaseOrderMaent'),
+    name: '采购单管理',
+    meta: { title: '采购单管理' }
+  },
+  {
+    path: 'purchaseOrderMaentDetl',
+    component: () =>
+      import ('@/views/icMaterialManagement/purchaseOrderMaentDetl'),
+    name: '添加采购单',
+    meta: { title: '添加采购单', noCache: true, activeMenu: '/icMaterialManagement/purchaseOrderMaent' },
+    hidden: true
+  },
+  {
+    path: 'inspectionManagement',
+    component: () =>
+      import ('@/views/icMaterialManagement/inspectionManagement'),
+    name: '来料检验管理',
+    meta: { title: '来料检验管理' }
+  },
+  {
+    path: 'inspectionManagementDetl',
+    component: () =>
+      import ('@/views/icMaterialManagement/inspectionManagementDetl'),
+    name: '添加来料检验单',
+    meta: { title: '添加来料检验单', noCache: true, activeMenu: '/icMaterialManagement/inspectionManagement' },
+    hidden: true
   },
 
   {
-    path: '/systemConfig',
-    component: Layout,
-    redirect: '/systemConfig/jobs',
-    alwaysShow: true,
-    name: '系统配置',
-    meta: { title: '系统配置', icon: 'xtpz' },
-    children: [
-      {
-        path: 'jobs',
-        component: () => import('@/views/systemConfig/jobs'),
-        name: '定时任务',
-        meta: { title: '定时任务' }
-      },
-      {
-        path: 'logs',
-        component: () => import('@/views/operationLog/logs'),
-        name: '操作日志',
-        meta: { title: '操作日志' }
-      },
-      {
-        path: 'loginLogs',
-        component: () => import('@/views/loginLog/loginLogs'),
-        name: '登录日志',
-        meta: { title: '登录日志' }
-      },
-      {
-        path: 'dicts',
-        component: () => import('@/views/dict/dicts'),
-        name: '字典管理',
-        meta: { title: '字典管理' }
-      }
-    ]
+    path: 'noReviewManagement',
+    component: () =>
+      import ('@/views/icMaterialManagement/noReviewManagement'),
+    name: '不合格评审单',
+    meta: { title: '不合格评审单' }
+  },
+  {
+    path: 'noReviewManagementDetl',
+    component: () =>
+      import ('@/views/icMaterialManagement/noReviewManagementDetl'),
+    name: '不合格评审单详情',
+    meta: { title: '不合格评审单详情', activeMenu: '/icMaterialManagement/noReviewManagement' },
+    hidden: true
+  }
+  ]
+},
+
+{
+  path: '/complaintManagement',
+  redirect: '/icMaterialManagement/complaintFormManagement',
+  component: Layout,
+  name: '投诉管理',
+  meta: {
+    title: '投诉管理',
+    icon: 'tsgl'
+  },
+  alwaysShow: true,
+  children: [{
+    path: 'complaintFormManagement',
+    component: () =>
+      import ('@/views/complaintManagement/complaintFormManagement'),
+    name: '投诉单管理',
+    meta: { title: '投诉单管理' }
+  },
+  {
+    path: 'complaintFormManagementDetl',
+    component: () =>
+      import ('@/views/complaintManagement/complaintFormManagementDetl'),
+    name: '添加投诉单',
+    meta: { title: '添加投诉单', activeMenu: '/complaintManagement/complaintFormManagement' },
+    hidden: true
+  }
+  ]
+},
+
+{
+  path: '/systemManagement',
+  component: Layout,
+  redirect: '/systemManagement/qualificationManagement',
+  name: '体系管理',
+  meta: {
+    title: '体系管理',
+    icon: 'txgl'
+  },
+  children: [{
+    path: 'qualificationManagement',
+    component: () =>
+      import ('@/views/systemManagement/qualificationManagement'),
+    name: '资质管理',
+    meta: { title: '资质管理', noCache: true }
+  },
+  {
+    path: 'qualificationManagementDelt',
+    component: () =>
+      import ('@/views/systemManagement/qualificationManagementDelt'),
+    name: '供应商详情',
+    meta: { title: '供应商详情', activeMenu: '/systemManagement/qualificationManagement' },
+    hidden: true
   },
 
-  // {
-  //   path: '/pdf',
-  //   component: Layout,
-  //   redirect: '/pdf/index',
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/pdf/index'),
-  //       name: 'PDF',
-  //       meta: { title: 'PDF', icon: 'pdf' }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/pdf/download',
-  //   component: () => import('@/views/pdf/download'),
-  //   hidden: true
-  // },
+  {
+    path: 'annualAuditPlan',
+    component: () =>
+      import ('@/views/systemManagement/annualAuditPlan'),
+    name: '年度审核计划',
+    meta: { title: '年度审核计划', noCache: true }
+  },
+  {
+    path: 'annualAuditPlanDelt',
+    component: () =>
+      import ('@/views/systemManagement/annualAuditPlanDelt'),
+    name: '审核计划详情',
+    meta: { title: '审核计划详情', activeMenu: '/systemManagement/annualAuditPlan' },
+    hidden: true
+  }
 
-  // {
-  //   path: '/theme',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/theme/index'),
-  //       name: 'Theme',
-  //       meta: { title: 'Theme', icon: 'theme' }
-  //     }
-  //   ]
-  // },
+  ]
+},
 
-  // {
-  //   path: '/clipboard',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/clipboard/index'),
-  //       name: 'ClipboardDemo',
-  //       meta: { title: 'Clipboard', icon: 'clipboard' }
-  //     }
-  //   ]
-  // },
+{
+  path: '/fileManagement',
+  component: Layout,
+  alwaysShow: true,
+  redirect: '/fileManagement/qualificationManagement',
+  name: '文件管理',
+  meta: { title: '文件管理', noCache: true, icon: 'wjgl' },
 
-  // {
-  //   path: 'external-link',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'https://github.com/PanJiaChen/vue-element-admin',
-  //       meta: { title: 'External Link', icon: 'link' }
-  //     }
-  //   ]
-  // },
+  children: [{
+    path: 'fileTaskManagement',
+    component: () =>
+      import ('@/views/fileManagement/fileTaskManagement'),
+    name: '文件任务管理',
+    meta: { title: '文件任务管理' }
+  },
+  {
+    path: 'fileTaskManagementDelt',
+    component: () =>
+      import ('@/views/fileManagement/fileTaskManagementDelt'),
+    name: '审核计划详情',
+    meta: { title: '审核计划详情', activeMenu: '/fileManagement/fileTaskManagement' },
+    hidden: true
+  },
 
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  {
+    path: 'fileList',
+    component: () =>
+      import ('@/views/fileManagement/fileList'),
+    name: '文件列表',
+    meta: { title: '文件列表' }
+  }
+  ]
+},
+
+{
+  path: '/statisticalAnalysis',
+  component: Layout,
+  redirect: '/statisticalAnalysis/incomingBadSummary',
+  name: '统计分析',
+  meta: {
+    title: '统计分析',
+    icon: 'tjfx'
+  },
+  children: [{
+    path: 'incomingBadSummary',
+    component: () =>
+      import ('@/views/statisticalAnalysis/incomingBadSummary'),
+    name: '来料不良汇总',
+    meta: { title: '来料不良汇总' }
+  },
+  {
+    path: 'passRateStatistics',
+    component: () =>
+      import ('@/views/statisticalAnalysis/passRateStatistics'),
+    name: '供应商来料批合格率统计',
+    meta: { title: '来料批合格率统计' }
+  },
+  {
+    path: 'timelinessComplaintHandling',
+    component: () =>
+      import ('@/views/statisticalAnalysis/timelinessComplaintHandling'),
+    name: '投诉处理及时性',
+    meta: { title: '投诉处理及时性' }
+  },
+  {
+    path: 'supplierPerformanceEvaluation',
+    component: () =>
+      import ('@/views/statisticalAnalysis/supplierPerformanceEvaluation'),
+    name: '供应商业绩评价',
+    meta: { title: '供应商业绩评价' }
+  }
+  ]
+},
+
+{
+  path: '/systemConfig',
+  component: Layout,
+  redirect: '/systemConfig/jobs',
+  alwaysShow: true,
+  name: '系统配置',
+  meta: { title: '系统配置', icon: 'xtpz' },
+  children: [{
+    path: 'jobs',
+    component: () =>
+      import ('@/views/systemConfig/jobs'),
+    name: '定时任务',
+    meta: { title: '定时任务' }
+  },
+  {
+    path: 'logs',
+    component: () =>
+      import ('@/views/operationLog/logs'),
+    name: '操作日志',
+    meta: { title: '操作日志' }
+  },
+  {
+    path: 'loginLogs',
+    component: () =>
+      import ('@/views/loginLog/loginLogs'),
+    name: '登录日志',
+    meta: { title: '登录日志' }
+  },
+  {
+    path: 'dicts',
+    component: () =>
+      import ('@/views/dict/dicts'),
+    name: '字典管理',
+    meta: { title: '字典管理' }
+  }
+  ]
+},
+
+// {
+//   path: '/pdf',
+//   component: Layout,
+//   redirect: '/pdf/index',
+//   children: [
+//     {
+//       path: 'index',
+//       component: () => import('@/views/pdf/index'),
+//       name: 'PDF',
+//       meta: { title: 'PDF', icon: 'pdf' }
+//     }
+//   ]
+// },
+// {
+//   path: '/pdf/download',
+//   component: () => import('@/views/pdf/download'),
+//   hidden: true
+// },
+
+// {
+//   path: '/theme',
+//   component: Layout,
+//   children: [
+//     {
+//       path: 'index',
+//       component: () => import('@/views/theme/index'),
+//       name: 'Theme',
+//       meta: { title: 'Theme', icon: 'theme' }
+//     }
+//   ]
+// },
+
+// {
+//   path: '/clipboard',
+//   component: Layout,
+//   children: [
+//     {
+//       path: 'index',
+//       component: () => import('@/views/clipboard/index'),
+//       name: 'ClipboardDemo',
+//       meta: { title: 'Clipboard', icon: 'clipboard' }
+//     }
+//   ]
+// },
+
+// {
+//   path: 'external-link',
+//   component: Layout,
+//   children: [
+//     {
+//       path: 'https://github.com/PanJiaChen/vue-element-admin',
+//       meta: { title: 'External Link', icon: 'link' }
+//     }
+//   ]
+// },
+
+// 404 page must be placed at the end !!!
+{ path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({

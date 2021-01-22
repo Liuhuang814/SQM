@@ -1,4 +1,5 @@
 <template>
+  <!-- 布局大小 -->
   <el-dropdown trigger="click" @command="handleSetSize">
     <div>
       <svg-icon class-name="size-icon" icon-class="size" />

@@ -1,25 +1,24 @@
 <template>
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
-      <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
-        <h1 v-else class="sidebar-title">{{ title }} </h1>
-      </router-link>
-      <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
+      <router-link key="collapse" class="sidebar-logo-link" to="/">
+        <img src="~@/assets/img/tmplogo.png" class="sidebar-logo">
         <h1 class="sidebar-title">{{ title }} </h1>
       </router-link>
+      <!-- <router-link v-else key="expand" class="sidebar-logo-link" to="/">
+        <img v-if="logo" :src="logo" class="sidebar-logo">
+        <h1 class="sidebar-title">{{ title }} </h1>
+      </router-link> -->
     </transition>
     <!-- <div>
       <el-avatar size="large" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
       <span style="color: #fff;font-size:13px;">杨月明</span>
     </div>
-    
-    <div style="overflow: hidden;color: #fff;font-size:13px;padding:0 8px">
-      <div style="float:left">部门：质量部</div>
-      <div style="float:right">岗位：检验员</div>
-    </div> -->
-     <!-- <span style="height: 50px;display: block;color: #fff;">哈哈哈哈</span> -->
+     -->
+    <div style="overflow: hidden;color: #fff;font-size:13px;padding:10px 8px">
+      <div>当前用户：质量部 白灵玲</div>
+    </div>
+    <!-- <span style="height: 50px;display: block;color: #fff;">哈哈哈哈</span> -->
   </div>
 </template>
 
@@ -34,8 +33,8 @@ export default {
   },
   data() {
     return {
-      title: 'SQM-供应商质量管理',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: '皓酌SQM平台',
+      logo: '~@/assets/img/mypic.jpg'
     }
   }
 }
@@ -78,7 +77,7 @@ export default {
       color: #fff;
       font-weight: 600;
       line-height: 50px;
-      font-size: 14px;
+      font-size: 15px;
       font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
       vertical-align: middle;
     }

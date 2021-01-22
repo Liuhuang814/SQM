@@ -1,4 +1,5 @@
 <template>
+  <!-- 全屏 -->
   <div>
     <svg-icon :icon-class="isFullscreen?'exit-fullscreen':'fullscreen'" @click="click" />
   </div>

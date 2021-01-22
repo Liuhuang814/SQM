@@ -24,13 +24,13 @@
         </div>
         <div class="condition">
           <el-date-picker
-            style="width: 260px;"
             v-model="listQuery.value1"
+            style="width: 260px;"
             type="daterange"
             range-separator="至"
             start-placeholder="订单开始日期"
-            end-placeholder="订单结束日期">
-          </el-date-picker>
+            end-placeholder="订单结束日期"
+          />
         </div>
       </div>
       <operation id="area-operation">
@@ -48,30 +48,30 @@
       style="width: 100%"
     >
       <el-table-column label="采购单单号" prop="purchaseNo" align="left" width="120" />
-      <el-table-column label="采购单种类" prop="purchaseType" align="left">
+      <el-table-column label="种类" prop="purchaseType" align="left" width="60">
         <template slot-scope="scope">
           <div>
             {{ slClassificationOp[scope.row.purchaseType].label }}
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="供应商编号" prop="supplierNo" align="center" />
-      <el-table-column label="供应商名称" prop="supplierName" align="left" width="240" />
-      <el-table-column label="采购单状态" prop="state" align="center">
+      <el-table-column label="供应商编号" prop="supplierNo" align="center" width="120" />
+      <el-table-column label="供应商名称" prop="supplierName" align="left" show-overflow-tooltip />
+      <el-table-column label="状态" prop="state" align="center" width="80">
         <template slot-scope="scope">
           <div>
             {{ slStateOp[scope.row.state].label }}
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="订单日期" prop="purchaseDate" align="center" width="120"/>
-      <el-table-column label="业务员编号" show-overflow-tooltip prop="userNo" align="left"  width="130" />
-      <el-table-column label="业务员名称" show-overflow-tooltip prop="userName" align="left" />
-      <el-table-column label="创建时间" show-overflow-tooltip prop="createDate"  align="center" width="160" />
+      <el-table-column label="订单日期" prop="purchaseDate" align="center" width="120" />
+      <!-- <el-table-column label="业务员编号" show-overflow-tooltip prop="userNo" align="left"  width="130" /> -->
+      <el-table-column label="业务员名称" show-overflow-tooltip prop="userName" align="left" width="80" />
+      <el-table-column label="创建时间" prop="createDate" align="center" width="160" />
       <el-table-column label="操作" align="center">
         <template slot-scope="{row,$index}">
           <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
-          <el-button type="text"  @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
+          <el-button type="text" @click="handleDelete(row,$index)"><span><i class="el-icon-delete" style="font-size:16px" /></span></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -86,7 +86,7 @@ export default {
   components: { Pagination },
   data() {
     const tableH = document.body.clientHeight - 210
-    const pageSizes = getTableBestRows(tableH,'textButton')
+    const pageSizes = getTableBestRows(tableH, 'textButton')
     return {
       total: 0,
       tableH: tableH, // 表格高度

@@ -1,5 +1,5 @@
 <template>
-<!-- 零件管理 -->
+  <!-- 零件管理 -->
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.partName" placeholder="任务名称" clearable class="input-item" />
@@ -8,40 +8,40 @@
       </el-select>
       <div style="float:right">
         <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
-        <el-button type="success" icon="el-icon-circle-plus-outline" @click="addSl">新增</el-button>
+        <el-button type="success" icon="el-icon-circle-plus-outline" @click="showDetail">新增</el-button>
         <el-button icon="el-icon-download" type="warning">导出</el-button>
       </div>
     </div>
     <el-table
+      ref="itsmDataTable"
       :data="tableData"
       stripe
       :height="tableH"
       highlight-current-row
       style="width: 100%"
-      ref="itsmDataTable"
     >
       <el-table-column label="任务编号" prop="jobId" align="center" width="80" />
       <el-table-column label="任务名称" show-overflow-tooltip prop="jobName" align="left" />
-      <el-table-column label="任务分组" show-overflow-tooltip prop="jobGroup" width="80"  align="left" />
+      <el-table-column label="任务分组" show-overflow-tooltip prop="jobGroup" width="80" align="left" />
       <el-table-column label="调用java方法字符串" show-overflow-tooltip prop="invokeTarget" align="left" />
-      <el-table-column label="执行表达式" show-overflow-tooltip prop="cronExpression" width="100"  align="left" />
-      <el-table-column label="任务状态" show-overflow-tooltip prop="status" width="80"  align="left" >
+      <el-table-column label="执行表达式" show-overflow-tooltip prop="cronExpression" width="100" align="left" />
+      <el-table-column label="任务状态" show-overflow-tooltip prop="status" width="80" align="left">
         <template slot-scope="scope">
           <div>
             {{ slStateOp[scope.row.status].label }}
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" show-overflow-tooltip prop="nextValidTime" width="140"  align="left" />
+      <el-table-column label="创建时间" show-overflow-tooltip prop="nextValidTime" width="140" align="left" />
       <el-table-column label="操作" align="center">
         <template slot-scope="{row,$index}">
-          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-video-play"></i></el-button>
-          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>
-          <el-button type="text" @click="handleDelete(row,$index)"><i style="font-size:16px" class="el-icon-delete"></i></el-button>
+          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-video-play" /></el-button>
+          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
+          <el-button type="text" @click="handleDelete(row,$index)"><i style="font-size:16px" class="el-icon-delete" /></el-button>
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :pageSizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page-sizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
     <el-dialog :visible.sync="dialogFormVisible" title="Job任务详情">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px" style="width: 400px; margin-left:50px;">
         <el-form-item label="任务名称" prop="title">
@@ -78,7 +78,7 @@ export default {
   components: { Pagination },
   data() {
     const tableH = document.body.clientHeight - 210
-    const pageSizes = getTableBestRows(tableH,'textButton')
+    const pageSizes = getTableBestRows(tableH, 'textButton')
     return {
       rs: {
         jobName: '',
@@ -120,7 +120,7 @@ export default {
       this.getList()
     },
     addSl() {
-      sessionStorage.setItem('supplierManagementdelt',{})
+      sessionStorage.setItem('supplierManagementdelt', {})
       this.$router.push({ path: 'supplierManagementdelt' })
     },
     handleDelete(row, index) {
@@ -137,7 +137,7 @@ export default {
               duration: 2000
             })
             this.tableData.splice(index, 1)
-          }else {
+          } else {
             console.log('按下 取消')
           }
         }

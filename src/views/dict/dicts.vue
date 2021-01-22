@@ -1,5 +1,5 @@
 <template>
-<!-- 操作日志 -->
+  <!-- 操作日志 -->
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.partName" placeholder="字典名称" clearable class="input-item" />
@@ -8,31 +8,32 @@
       </el-select>
       <div style="float:right">
         <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
-        <el-button type="success" icon="el-icon-circle-plus-outline" @click="addSl">新增</el-button>
+        <el-button type="success" icon="el-icon-circle-plus-outline" @click="showDetail">新增</el-button>
         <el-button icon="el-icon-download" type="warning">导出</el-button>
       </div>
     </div>
     <el-table
+      ref="itsmDataTable"
       :data="tableData"
       stripe
       :height="tableH"
       highlight-current-row
       style="width: 100%"
-      ref="itsmDataTable"
-       @expand-change="rowExpand">
+      @expand-change="rowExpand"
     >
+      >
       <el-table-column type="expand" prop="">
         <template slot-scope="scope">
           <el-table :data="scope.row.dictDetails" style="width: 50%;">
-            <el-table-column label="字典编号" prop="dictId"/>
-            <el-table-column label="字典名称" prop="dicName"/>
+            <el-table-column label="字典编号" prop="dictId" />
+            <el-table-column label="字典名称" prop="dicName" />
           </el-table>
         </template>
       </el-table-column>
       <el-table-column label="记录编号" show-overflow-tooltip prop="dictId" align="center" width="180" />
-      <el-table-column label="字典名称" show-overflow-tooltip prop="dictName" width="150"  align="left" />
-      <el-table-column label="字典类型" show-overflow-tooltip prop="dictType" width="80"  align="left" />
-      <el-table-column label="登录状态" show-overflow-tooltip prop="businessType" width="80"  align="left" >
+      <el-table-column label="字典名称" show-overflow-tooltip prop="dictName" width="150" align="left" />
+      <el-table-column label="字典类型" show-overflow-tooltip prop="dictType" width="80" align="left" />
+      <el-table-column label="登录状态" show-overflow-tooltip prop="businessType" width="80" align="left">
         <template slot-scope="scope">
           <div>
             {{ businessTypeOpt[scope.row.status]?businessTypeOpt[scope.row.status].label:'' }}
@@ -41,15 +42,15 @@
       </el-table-column>
       <el-table-column label="用途描述" show-overflow-tooltip prop="remark" align="left" />
       <el-table-column label="创建人" show-overflow-tooltip prop="createBy" align="left" />
-      <el-table-column label="创建时间" show-overflow-tooltip prop="createTime" width="180"  align="left" />
+      <el-table-column label="创建时间" show-overflow-tooltip prop="createTime" width="180" align="left" />
       <el-table-column label="操作" align="center">
         <template slot-scope="{row,$index}">
-          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit"></i></el-button>
-          <el-button type="text" @click="handleDelete(row,$index)"><i style="font-size:16px" class="el-icon-delete"></i></el-button>
+          <el-button type="text" @click="details(row)"><i style="font-size:16px" class="el-icon-edit" /></el-button>
+          <el-button type="text" @click="handleDelete(row,$index)"><i style="font-size:16px" class="el-icon-delete" /></el-button>
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :pageSizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page-sizes="listQuery.pageSizes" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
     <el-dialog :visible.sync="dialogFormVisible" title="数据字典维护">
       <el-form ref="dataForm" label-position="left" label-width="150px" style="margin-left:50px;margin-right:50px;">
         <el-form-item label="字典名称" prop="title">
@@ -59,7 +60,7 @@
           <el-input v-model="rs.dictType" />
         </el-form-item>
         <el-form-item label="用途说明" prop="operIp">
-          <el-input type="textarea" v-model="rs.remark" />
+          <el-input v-model="rs.remark" type="textarea" />
         </el-form-item>
         <el-divider content-position="left">字典选项列表</el-divider>
         <el-table :data="rs.dictDetails">
@@ -99,14 +100,18 @@ export default {
   components: { Pagination },
   data() {
     const tableH = document.body.clientHeight - 210
-    const pageSizes = getTableBestRows(tableH,'textButton')
+    const pageSizes = getTableBestRows(tableH, 'textButton')
     return {
       orderDetailData: null,
       rs: {
         jobName: '',
         invokeTarget: '',
         cronExpression: '',
-        status: '0'
+        status: '0',
+        dictDetails: [
+          { 'dictId': '', 'dicName': '' },
+          { 'dictId': '', 'dicName': '' }
+        ]
       },
       dialogFormVisible: false,
       total: 0,
@@ -128,7 +133,7 @@ export default {
       tableData: [],
       businessTypeOpt: [
         { label: '正常', value: '0' },
-        { label: '停用', value: '1' },
+        { label: '停用', value: '1' }
       ]
     }
   },
@@ -138,7 +143,7 @@ export default {
   methods: {
     getList() {
       const tmpData = jobsList.rows
-      this.tableData = this.pagination(this.listQuery.page,this.listQuery.pageSizes[0],tmpData)
+      this.tableData = this.pagination(this.listQuery.page, this.listQuery.pageSizes[0], tmpData)
       console.log(this.tableData)
       this.total = jobsList.rows.total
       this.total = jobsList.total
@@ -161,7 +166,7 @@ export default {
               duration: 2000
             })
             this.tableData.splice(index, 1)
-          }else {
+          } else {
             console.log('按下 取消')
           }
         }
@@ -173,11 +178,15 @@ export default {
     },
     showDetail() {
       this.rs = {}
+      this.rs.dictDetails = [
+        { 'dictId': '', 'dicName': '' },
+        { 'dictId': '', 'dicName': '' }
+      ]
       this.dialogFormVisible = true
     },
     pagination(pageNo, pageSize, array) {
-      var offset = (pageNo - 1) * pageSize;
-      return (offset + pageSize >= array.length) ? array.slice(offset, array.length) : array.slice(offset, offset + pageSize);
+      var offset = (pageNo - 1) * pageSize
+      return (offset + pageSize >= array.length) ? array.slice(offset, array.length) : array.slice(offset, offset + pageSize)
     }
   }
 }

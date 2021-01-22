@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue'
 
 import Cookies from 'js-cookie'
@@ -18,35 +19,35 @@ import './permission' // permission control
 import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
-import operation from '@/components/operationArea/operation'// 自适应的‘更多条件’区域
+import operation from '@/components/operationArea/operation' // 自适应的‘更多条件’区域
 Vue.component('operation', operation)
-/**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online ! ! !
- */
+    /**
+     * If you don't want to use mock-server
+     * you want to use MockJs for mock api
+     * you can execute: mockXHR()
+     *
+     * Currently MockJs will be used in the production environment,
+     * please remove it before going online ! ! !
+     */
 if (process.env.NODE_ENV === 'production') {
-  const { mockXHR } = require('../mock')
-  mockXHR()
+    const { mockXHR } = require('../mock')
+    mockXHR()
 }
 
 Vue.use(Element, {
-  size: Cookies.get('size') || 'mini', // set element-ui default size
+    size: Cookies.get('size') || 'mini', // set element-ui default size
 })
 
 // register global utility filters
 Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
+    Vue.filter(key, filters[key])
 })
 
 Vue.config.productionTip = false
 
 new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
+    el: '#app',
+    router,
+    store,
+    render: h => h(App)
 })
