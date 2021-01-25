@@ -79,7 +79,16 @@ module.exports = {
                 symbolId: 'icon-[name]'
             })
             .end()
-
+        config.module
+            .rule('vue')
+            .use('vue-loader')
+            .loader('vue-loader')
+            .tap(options => {
+              options.compilerOptions.preserveWhitespace = true
+              return options
+            })
+            .end()
+        config.module.rule('bpmnlintrc').test(/\.bpmnlintrc$/).use('bpmnlint-loader').loader('bpmnlint-loader').end()
         config
             .when(process.env.NODE_ENV !== 'development',
                 config => {

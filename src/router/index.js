@@ -471,6 +471,12 @@ export const asyncRoutes = [{
       import ('@/views/dict/dicts'),
     name: '字典管理',
     meta: { title: '字典管理' }
+  },
+  {
+    path: 'aaaaaa',
+    component: () => import('@/views/dict/aaaaaa'),
+    name: '流程图',
+    meta: { title: '流程图' }
   }
   ]
 },
