@@ -49,6 +49,7 @@ export default function Builder() {
       }
 
       if (last) {
+
         // remove from old position
         properties.splice(descriptor.idx, 1);
 

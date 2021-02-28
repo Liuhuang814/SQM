@@ -49,7 +49,7 @@ export function updateDefaultVersion(processId, processDetailId) {
 
 export function getProcessDetailById(processDetailId) {
   return request({
-    //url: '/bpm/processDetail/getProcessDetailById/' + processDetailId,
+    // url: '/bpm/processDetail/getProcessDetailById/' + processDetailId,
     url: '/processDetail/getProcessDetailById.jsp',
     method: 'post'
   })

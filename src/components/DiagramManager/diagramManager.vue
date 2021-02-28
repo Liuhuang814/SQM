@@ -1,7 +1,7 @@
 <template>
 
   <div id="app-container">
-    <el-container v-loading="renderDiagramLoading"  style="min-height: 700px ;width:100% ;">
+    <el-container v-loading="renderDiagramLoading" style="min-height: 700px ;width:100% ;">
       <el-tabs
         v-model="activeName"
         type="card"
@@ -242,7 +242,7 @@ export default {
     while (bjsIoLogo.firstChild) {
       bjsIoLogo.removeChild(bjsIoLogo.firstChild)
     }
-    document.querySelector('.djs-palette').style.display="inline-block"
+    document.querySelector('.djs-palette').style.display = 'inline-block'
 
     if (this.newProcessDiagramXml === '') {
       var xml = defaultDiagramXML

@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-upload
-      :action="action"
       ref="upload"
+      :action="action"
       :list-type="listType"
       :on-preview="handlePictureCardPreview"
       :on-remove="handleRemove"

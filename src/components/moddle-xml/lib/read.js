@@ -131,6 +131,7 @@ export function Context(options) {
       id = element.get(idProperty.name);
 
       if (id) {
+
         // for QName validation as per http://www.w3.org/TR/REC-xml/#NT-NameChar
         if (!/^([a-z][\w-.]*:)?[a-z_][\w-.]*$/i.test(id)) {
           throw new Error('illegal ID <' + id + '>');
@@ -328,6 +329,7 @@ ElementHandler.prototype.createElement = function(node) {
           id: value
         });
       } else {
+
         // IDREFS: parse references as whitespace-separated list
         values = value.split(' ');
 
@@ -425,6 +427,7 @@ ElementHandler.prototype.getPropertyForNode = function(node) {
       });
     }
   } else {
+
     // parse unknown element (maybe extension)
     property = find(descriptor.properties, function(p) {
       return !p.isReference && !p.isAttribute && p.type === 'Element';
@@ -500,6 +503,7 @@ ElementHandler.prototype.handleChild = function(node) {
 
       this.context.addReference(newElement);
     } else {
+
       // establish child -> parent relationship
       newElement.$parent = element;
     }
@@ -618,15 +622,18 @@ Reader.prototype.fromXML = function(xml, options, done) {
   var rootHandler = options.rootHandler;
 
   if (options instanceof ElementHandler) {
+
     // root handler passed via (xml, { rootHandler: ElementHandler }, ...)
     rootHandler = options;
     options = {};
   } else {
     if (typeof options === 'string') {
+
       // rootHandler passed via (xml, 'someString', ...)
       rootHandler = this.handler(options);
       options = {};
     } else if (typeof rootHandler === 'string') {
+
       // rootHandler passed via (xml, { rootHandler: 'someString' }, ...)
       rootHandler = this.handler(rootHandler);
     }
@@ -688,6 +695,7 @@ Reader.prototype.fromXML = function(xml, options, done) {
   }
 
   function handleWarning(err, getContext) {
+
     // just like handling errors in <lax=true> mode
     return handleError(err, getContext, true);
   }
@@ -727,9 +735,11 @@ Reader.prototype.fromXML = function(xml, options, done) {
         }
 
         if (!reference) {
+
           // remove unresolvable reference
           collection.splice(idx, 1);
         } else {
+
           // add or update reference in collection
           collection[idx] = reference;
         }
@@ -792,6 +802,7 @@ Reader.prototype.fromXML = function(xml, options, done) {
   }
 
   function handleText(text, getContext) {
+
     // strip whitespace only nodes, i.e. before
     // <!CDATA[ ... ]> sections and in between tags
     text = text.trim();

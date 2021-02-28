@@ -140,6 +140,7 @@ describe('linting', function() {
 
     // then
     expect(function() {
+
       // when
       linting.setLinterConfig('FOO');
     }).to.throw('Expected linterConfig = { config, resolver }');

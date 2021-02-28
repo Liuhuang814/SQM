@@ -170,6 +170,7 @@ describe('bpmn-moddle - write', function() {
 
         // when
         write(sequenceFlow, { format: true }, function(err, result) {
+
           // then
           expect(result).to.eql(expectedXML);
 
@@ -215,6 +216,7 @@ describe('bpmn-moddle - write', function() {
 
         // when
         write(loopCharacteristics, function(err, result) {
+
           // then
           expect(result).to.eql(expectedXML);
 
@@ -298,6 +300,7 @@ describe('bpmn-moddle - write', function() {
 
         // when
         write(processElement, function(err, result) {
+
           // then
           expect(result).to.eql(expectedXML);
 
@@ -316,7 +319,7 @@ describe('bpmn-moddle - write', function() {
             moddle.create('bpmn:Property', { name: 'BAR' })
           ],
           resources: [
-            moddle.create('bpmn:HumanPerformer', { name: 'Walter' } )
+            moddle.create('bpmn:HumanPerformer', { name: 'Walter' })
           ],
           dataInputAssociations: [
             moddle.create('bpmn:DataInputAssociation', { id: 'Input_1' })
@@ -339,6 +342,7 @@ describe('bpmn-moddle - write', function() {
 
         // when
         write(activity, function(err, result) {
+
           // then
           expect(result).to.eql(expectedXML);
 
@@ -449,6 +453,7 @@ describe('bpmn-moddle - write', function() {
 
         // when
         write(assignmentExpression, function(err, result, context) {
+
           // then
           expect(result).to.eql(expectedXML);
 
@@ -528,6 +533,7 @@ describe('bpmn-moddle - write', function() {
 
         // when
         write(itemDefinition, function(err, result) {
+
           // then
           expect(result).to.eql(expectedXML);
 
@@ -611,6 +617,7 @@ describe('bpmn-moddle - write', function() {
 
         // when
         write(collaboration, function(err, result) {
+
           // then
           expect(result).to.eql(expectedXML);
 
@@ -656,6 +663,7 @@ describe('bpmn-moddle - write', function() {
 
 
       it('Operation#messageRef', function(done) {
+
         // given
         var inMessage = moddle.create('bpmn:Message', {
           id: 'fooInMessage'
@@ -703,6 +711,7 @@ describe('bpmn-moddle - write', function() {
 
         // when
         write(diagram, function(err, result) {
+
           // then
           expect(result).to.eql(expectedXML);
 
@@ -725,6 +734,7 @@ describe('bpmn-moddle - write', function() {
 
         // when
         write(bpmnShape, function(err, result) {
+
           // then
           expect(result).to.eql(expectedXML);
 

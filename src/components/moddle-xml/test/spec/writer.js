@@ -29,6 +29,7 @@ describe('Writer', function() {
       var model = createModel([ 'properties' ]);
 
       it('should write xml preamble', function() {
+
         // given
         var writer = new Writer({ preamble: true });
         var root = model.create('props:Root');
@@ -666,6 +667,7 @@ describe('Writer', function() {
       var model = createModel([ 'virtual' ]);
 
       it('should not serialize virtual property', function() {
+
         // given
         var writer = createWriter(model);
 
@@ -1449,6 +1451,7 @@ describe('Writer', function() {
       var writer = createWriter(model);
 
       var root = model.create('e:Root', {
+
         // unprefixed root namespace
         'xmlns': 'http://extensions',
         extensions: [
@@ -1462,6 +1465,7 @@ describe('Writer', function() {
             ]
           }),
           model.createAny('ns0:foo', 'http://foo', {
+
             // unprefixed extension namespace
             'xmlns': 'http://foo',
             $children: [
@@ -1500,6 +1504,7 @@ describe('Writer', function() {
       var writer = createWriter(model);
 
       var root = model.create('e:Root', {
+
         // unprefixed root namespace
         'xmlns': 'http://extensions',
         extensions: [
@@ -1531,6 +1536,7 @@ describe('Writer', function() {
       var writer = createWriter(model);
 
       var root = model.create('e:Root', {
+
         // unprefixed root namespace
         'xmlns': 'http://extensions',
         'xmlns:bar': 'http://bar',
@@ -1563,6 +1569,7 @@ describe('Writer', function() {
       var writer = createWriter(model);
 
       var root = model.create('e:Root', {
+
         // unprefixed root namespace
         'xmlns': 'http://extensions',
         'xmlns:otherBar': 'http://bar',
@@ -1599,6 +1606,7 @@ describe('Writer', function() {
       var writer = createWriter(model);
 
       var root = model.create('e:Root', {
+
         // unprefixed root namespace
         'xmlns': 'http://extensions',
         'xmlns:otherBar': 'http://bar',
@@ -1633,10 +1641,12 @@ describe('Writer', function() {
       var writer = createWriter(model);
 
       var root = model.create('props:Root', {
+
         // unprefixed top-level namespace
         'xmlns': 'http://properties',
         any: [
           model.create('ext:ExtendedComplex', {
+
             // unprefixed nested namespace
             'xmlns': 'http://extended'
           })
@@ -1668,11 +1678,13 @@ describe('Writer', function() {
       var writer = createWriter(model);
 
       var root = model.create('ext:Root', {
+
         // unprefixed top-level namespace
         'xmlns': 'http://extended',
         id: 'ROOT',
         any: [
           model.create('props:Complex', {
+
             // unprefixed nested namespace
             'xmlns': 'http://properties'
           })

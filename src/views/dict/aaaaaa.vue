@@ -16,7 +16,7 @@ export default {
   components: {
     diagramManager
   },
-  data(){
+  data() {
     return {
       processInfo: {},
       diagramXml: '',
@@ -29,16 +29,16 @@ export default {
         loading: false,
         fullscreen: true,
         closeOnPressEscape: false
-      },
+      }
     }
   },
   methods: {
-    queryList(){
+    queryList() {
 
     },
-    closeDiagramDialog(){
+    closeDiagramDialog() {
 
     }
-  },
+  }
 }
 </script>
